@@ -147,6 +147,12 @@
   <figure style="margin:0;">
     <iframe src="/media/the-little-box/?v=2" title="The little box — a one-minute look at the compute behind LocalDiabetic" loading="lazy" allow="fullscreen" style="width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid #e6dcc8;background:#0c0a07;box-shadow:0 30px 60px -44px rgba(43,33,24,.55);"></iframe>
     <figcaption class="mono" style="font-size:12px;letter-spacing:.04em;color:#9b8d7b;margin-top:12px;text-align:center;">The little box &middot; ~1 minute &middot; tap for sound</figcaption>
+    <div style="text-align:center;margin-top:14px;">
+      <button type="button" class="ld-share" data-url="https://localdiabetic.com/box" data-title="The little box — your whole diabetic life, on a box you own. LocalDiabetic · Win big." style="font:700 13px/1 'Inter',-apple-system,sans-serif;color:#2B2118;background:#FBF0D8;border:1px solid #F0DCA8;border-radius:999px;padding:10px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D99A2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+        Share the short
+      </button>
+    </div>
   </figure>
 </section>
 
@@ -688,5 +694,19 @@
   <a href="/join" class="btn-primary" style="display:block;text-align:center;text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;font-size:16px;padding:14px;border-radius:12px;box-shadow:0 8px 20px -10px rgba(217,154,43,.8);">Join the first members</a>
 </div>
 
+<script>
+(function(){
+  document.querySelectorAll('.ld-share').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var url=btn.getAttribute('data-url'), title=btn.getAttribute('data-title');
+      if(navigator.share){ navigator.share({title:title,text:title,url:url}).catch(function(){}); return; }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        var orig=btn.innerHTML;
+        navigator.clipboard.writeText(url).then(function(){ btn.innerHTML='Link copied ✓'; setTimeout(function(){btn.innerHTML=orig;},1800); });
+      } else { window.prompt('Copy this link:', url); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
