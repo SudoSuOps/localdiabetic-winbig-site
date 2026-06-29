@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The little box — the compute that runs your LifeBoard · LocalDiabetic</title>
+<meta name="description" content="LocalDiabetic runs on a small box you own at home — a Jetson, a Mac mini, a ZimaBoard, a Synology NAS, or a ZimaCube. Here's exactly what each one runs, the baseline to use a device you already own, and why local-first beats the cloud: your data never leaves home.">
+<link rel="canonical" href="https://localdiabetic.com/box">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<link rel="icon" href="/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon/bee.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/appicon-cream-180.png">
+<meta name="theme-color" content="#F2B441">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The little box that runs your whole diabetic life">
+<meta property="og:description" content="A Jetson, a Mac mini, a ZimaBoard, a Synology NAS, or a ZimaCube — what each runs, the baseline to reuse a device you own, and why your data never leaves home.">
+<meta property="og:image" content="/localdiabetic-og.png?v=winbig">
+<meta property="og:url" content="https://localdiabetic.com/box">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/localdiabetic-og.png?v=winbig">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  html{scroll-behavior:smooth;}
+  body{margin:0;padding:0;background:#FBF7EF;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#2B2118;-webkit-font-smoothing:antialiased;line-height:1.65;}
+  *{box-sizing:border-box;}
+  a{color:inherit;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;}
+  .nav-link{text-decoration:none;color:#6b5e4f;transition:color .15s;}
+  .nav-link:hover{color:#2B2118;}
+  .flink{transition:color .15s;}
+  .flink:hover{color:#F2B441;}
+  a:focus-visible,button:focus-visible{outline:3px solid rgba(242,180,65,.55);outline-offset:2px;border-radius:8px;}
+  .ld-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:500;}
+  .sec-pad{padding:80px 24px;}
+  .boxes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .bcard{background:#fff;border:1px solid #ece3d2;border-radius:18px;padding:24px;transition:transform .24s cubic-bezier(.2,.7,.2,1),box-shadow .24s,border-color .15s;}
+  .bcard:hover{transform:translateY(-4px);box-shadow:0 24px 46px -30px rgba(43,33,24,.5);border-color:#F0DCA8;}
+  .spec{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:7px 0;border-top:1px solid #f0e8d8;}
+  .spec span:first-child{color:#9b8d7b;}
+  .spec span:last-child{font-weight:600;color:#2B2118;text-align:right;}
+  .tier{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;}
+  @media (max-width:760px){.boxes{grid-template-columns:1fr;}.ld-nav .nav-sec{display:none;}.sec-pad{padding:56px 20px;}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;scroll-behavior:auto !important;}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Compute that runs the LocalDiabetic LifeBoard",
+  "description":"Small, low-power computers a person can own at home to run the LocalDiabetic LifeBoard and the on-box Bee AI — privately, with no cloud dependency.",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"NVIDIA Jetson Orin Nano","description":"~$249 palm-sized edge AI board (8GB, ~67 TOPS). Runs the DiabeticDaily-4B brain on-device."},
+    {"@type":"ListItem","position":2,"name":"ZimaBoard 2","description":"~$200 silent always-on x86 home-server board. Runs the LifeBoard plus the 4B brain and stores records locally."},
+    {"@type":"ListItem","position":3,"name":"Synology NAS","description":"~$300+ home network storage — the vault where your records, photos, and documents live, backed up and RAID-protected at home."},
+    {"@type":"ListItem","position":4,"name":"Apple Mac mini (M4)","description":"~$599 silent all-in-one. Apple Silicon runs the DiabeticDaily-9B brain comfortably and the 27B quantized."},
+    {"@type":"ListItem","position":5,"name":"ZimaCube 2","description":"~$700+ multi-bay home server with room for a GPU. Holds years of records and runs the largest DiabeticDaily-27B brain."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What hardware do I need to run LocalDiabetic?","acceptedAnswer":{"@type":"Answer","text":"A small computer you own at home with about 8 GB of RAM, ~20 GB of free storage, and a modern NPU/GPU or Apple Silicon (the smallest DiabeticDaily-4B brain can even run on a modern CPU). Good options range from a ~$249 NVIDIA Jetson Orin Nano up to a ZimaCube home server."}},
+    {"@type":"Question","name":"Can I use a computer I already own?","acceptedAnswer":{"@type":"Answer","text":"Yes. If a device you already have clears the baseline — about 8 GB RAM, ~20 GB free storage, always-on at home, and a modern NPU/GPU or Apple Silicon — it can run the LifeBoard and the on-box Bee. A spare mini-PC, Mac mini, or NAS often qualifies."}},
+    {"@type":"Question","name":"Does LocalDiabetic work without the internet?","acceptedAnswer":{"@type":"Answer","text":"Yes. The AI and your records live on the box in your home, so the LifeBoard keeps working during an outage, a storm, or off-grid. Your private health data never leaves the box."}},
+    {"@type":"Question","name":"Why local instead of the cloud?","acceptedAnswer":{"@type":"Answer","text":"Privacy is the architecture, not a promise: your health data is stored locally and never sent to a company's cloud, so there's no subscription, no data harvesting, and no cloud breach surface. You own the box, the data, and the AI."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ===== Bee sprite ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="bee" viewBox="0 0 120 132">
+    <path d="M54 20 C48 6 41 3 34 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round" fill="none"></path><path d="M66 20 C72 6 79 3 86 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round" fill="none"></path><circle cx="33" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"></circle><circle cx="87" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"></circle><ellipse cx="36" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(-24 36 54)"></ellipse><ellipse cx="84" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(24 84 54)"></ellipse><rect x="40" y="44" width="40" height="72" rx="20" fill="#F2B441" stroke="#2B2118" stroke-width="4.2"></rect><g clip-path="url(#beeclip)"><rect x="36" y="66" width="48" height="12" fill="#2B2118"></rect><rect x="36" y="90" width="48" height="12" fill="#2B2118"></rect></g><clipPath id="beeclip"><rect x="40" y="44" width="40" height="72" rx="20"></rect></clipPath><circle cx="60" cy="31" r="17" fill="#2B2118"></circle><circle cx="53" cy="29" r="3.4" fill="#FBF7EF"></circle><circle cx="67" cy="29" r="3.4" fill="#FBF7EF"></circle>
+  </symbol>
+  <symbol id="bee-dark" viewBox="0 0 120 132">
+    <path d="M54 20 C48 6 41 3 34 5" stroke="#0B0F14" stroke-width="4.2" stroke-linecap="round" fill="none"></path><path d="M66 20 C72 6 79 3 86 5" stroke="#0B0F14" stroke-width="4.2" stroke-linecap="round" fill="none"></path><circle cx="33" cy="5" r="4.4" fill="#F2B441" stroke="#0B0F14" stroke-width="3"></circle><circle cx="87" cy="5" r="4.4" fill="#F2B441" stroke="#0B0F14" stroke-width="3"></circle><ellipse cx="36" cy="54" rx="19" ry="26" fill="#3a3526" stroke="#F2B441" stroke-width="3" transform="rotate(-24 36 54)"></ellipse><ellipse cx="84" cy="54" rx="19" ry="26" fill="#3a3526" stroke="#F2B441" stroke-width="3" transform="rotate(24 84 54)"></ellipse><rect x="40" y="44" width="40" height="72" rx="20" fill="#F2B441" stroke="#0B0F14" stroke-width="4.2"></rect><g clip-path="url(#beeclipd)"><rect x="36" y="66" width="48" height="12" fill="#0B0F14"></rect><rect x="36" y="90" width="48" height="12" fill="#0B0F14"></rect></g><clipPath id="beeclipd"><rect x="40" y="44" width="40" height="72" rx="20"></rect></clipPath><circle cx="60" cy="31" r="17" fill="#E8EEF5"></circle><circle cx="53" cy="29" r="3.4" fill="#0B0F14"></circle><circle cx="67" cy="29" r="3.4" fill="#0B0F14"></circle>
+  </symbol>
+</svg>
+
+<!-- ===== HEADER ===== -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(251,247,239,.85);backdrop-filter:blur(12px);border-bottom:1px solid #ece3d2;">
+  <div style="max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="/" style="display:flex;align-items:center;gap:11px;text-decoration:none;" aria-label="LocalDiabetic — Win big">
+      <svg width="32" height="35" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee"></use></svg>
+      <span style="display:flex;flex-direction:column;line-height:1;">
+        <span style="font-size:19px;letter-spacing:-0.3px;"><span style="font-weight:600;color:#2B2118;">Local</span><span style="font-weight:800;color:#D99A2B;">Diabetic</span></span>
+        <span style="font-size:13px;font-weight:900;letter-spacing:-0.2px;margin-top:4px;"><span style="color:#2B2118;">Win</span> <span style="color:#D99A2B;">big.</span></span>
+      </span>
+    </a>
+    <nav class="ld-nav" aria-label="Primary">
+      <a href="/dailylocal" class="nav-link nav-sec">The DailyLocal</a>
+      <a href="/box" class="nav-link" style="color:#D99A2B;font-weight:700;">The Box</a>
+      <a href="/try" class="nav-link nav-sec">Try it</a>
+      <a href="/shop" class="nav-link nav-sec">Shop</a>
+      <a href="/about" class="nav-link nav-sec">About</a>
+      <a href="/give" class="nav-link nav-sec">Give</a>
+      <a href="/join" class="nav-link" style="text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;padding:9px 18px;border-radius:11px;box-shadow:0 6px 16px -9px rgba(217,154,43,.8);">Join</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <section style="position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-120px;left:50%;width:1100px;height:720px;transform:translateX(-50%);background:radial-gradient(circle,rgba(242,180,65,.18) 0%,rgba(242,180,65,.05) 42%,transparent 68%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:880px;margin:0 auto;padding:84px 24px 48px;text-align:center;">
+      <div class="mono" style="display:inline-flex;align-items:center;gap:8px;background:#FBF0D8;border:1px solid #F0DCA8;border-radius:999px;padding:7px 16px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a6e15;margin-bottom:26px;">🐝 The little box</div>
+      <h1 style="font-weight:800;font-size:clamp(34px,5.6vw,60px);letter-spacing:-1.6px;line-height:1.06;margin:0 0 22px;text-wrap:balance;">One small box. Your whole diabetic life — <span style="color:#D99A2B;">and it never leaves home.</span></h1>
+      <p style="font-size:19px;line-height:1.6;color:#6b5e4f;max-width:60ch;margin:0 auto 14px;">LocalDiabetic doesn't run in someone else's cloud. It runs on a small, quiet computer <em>you</em> own — sitting on a shelf at home. Your records, your reminders, and a diabetic-smart AI all live on that box. Here's what runs it, what it really costs, and why owning the box is the whole point.</p>
+    </div>
+  </section>
+
+  <!-- ===== WHAT THE COMPUTE REPRESENTS ===== -->
+  <section style="background:#F3ECDD;border-top:1px solid #ece3d2;border-bottom:1px solid #ece3d2;">
+    <div class="sec-pad" style="max-width:900px;margin:0 auto;">
+      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">What this compute represents</div>
+      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 20px;">It's not a gadget. It's <span style="color:#D99A2B;">ownership.</span></h2>
+      <p style="font-size:17.5px;line-height:1.7;color:#4a4034;margin:0 0 16px;">A cloud health app charges you every month <strong>and</strong> keeps your data. The little box is the opposite: you pay once for hardware you own, and your records plus the AI live <em>on it, in your house</em>. The only thing that ever leaves is a non-private receipt — never your health data.</p>
+      <p style="font-size:17.5px;line-height:1.7;color:#4a4034;margin:0;">That one-time box buys something a subscription never can: <strong>a diabetic-smart brain that answers without sending your life to a stranger's server</strong> — and keeps working when the internet doesn't.</p>
+    </div>
+  </section>
+
+  <!-- ===== DEVICES ===== -->
+  <section class="sec-pad" style="max-width:1080px;margin:0 auto;">
+    <div style="text-align:center;max-width:680px;margin:0 auto 40px;">
+      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">Boxes that run it</div>
+      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 14px;">From a $249 board to a home server</h2>
+      <p style="font-size:17px;line-height:1.65;color:#6b5e4f;margin:0;">The brain comes in sizes — <span class="mono" style="font-size:14.5px;color:#2B2118;">DiabeticDaily‑4B / 9B / 27B</span> — so the box can be tiny or roomy. Pick by budget and how much headroom you want. Prices are approximate.</p>
+    </div>
+
+    <div class="boxes">
+
+      <div class="bcard">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
+          <h3 style="font-weight:800;font-size:19px;margin:0;">NVIDIA Jetson Orin Nano</h3>
+          <span class="tier" style="background:#FBF0D8;color:#9a6e15;">Edge brain</span>
+        </div>
+        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">The $249 board that proves the whole thesis — a real diabetic AI in the palm of your hand.</p>
+        <div class="spec"><span>From</span><span>~$249</span></div>
+        <div class="spec"><span>Memory</span><span>8 GB</span></div>
+        <div class="spec"><span>AI compute</span><span>~67 TOPS NPU/GPU</span></div>
+        <div class="spec"><span>Power</span><span>~7–25 W</span></div>
+        <div class="spec"><span>Runs</span><span>DiabeticDaily‑4B</span></div>
+      </div>
+
+      <div class="bcard">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
+          <h3 style="font-weight:800;font-size:19px;margin:0;">ZimaBoard 2</h3>
+          <span class="tier" style="background:#FBF0D8;color:#9a6e15;">Always‑on server</span>
+        </div>
+        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">A silent, fanless x86 board that quietly runs the LifeBoard and stores your records on your shelf.</p>
+        <div class="spec"><span>From</span><span>~$200</span></div>
+        <div class="spec"><span>Memory</span><span>up to 16 GB</span></div>
+        <div class="spec"><span>CPU</span><span>quad‑core x86</span></div>
+        <div class="spec"><span>Power</span><span>~6–12 W</span></div>
+        <div class="spec"><span>Runs</span><span>LifeBoard + 4B</span></div>
+      </div>
+
+      <div class="bcard">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
+          <h3 style="font-weight:800;font-size:19px;margin:0;">Synology NAS</h3>
+          <span class="tier" style="background:#E8F3EC;color:#2f7d54;">The vault</span>
+        </div>
+        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">The data home — records, photos, and documents, backed up and RAID‑protected. Pair it with an edge brain.</p>
+        <div class="spec"><span>From</span><span>~$300+</span></div>
+        <div class="spec"><span>Memory</span><span>4–32 GB</span></div>
+        <div class="spec"><span>Storage</span><span>multi‑bay, RAID</span></div>
+        <div class="spec"><span>Power</span><span>~20–40 W</span></div>
+        <div class="spec"><span>Runs</span><span>Vault (+ 4B on x86)</span></div>
+      </div>
+
+      <div class="bcard">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
+          <h3 style="font-weight:800;font-size:19px;margin:0;">Apple Mac mini (M4)</h3>
+          <span class="tier" style="background:#FBF0D8;color:#9a6e15;">Headroom</span>
+        </div>
+        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">Silent, sips power, and Apple Silicon runs a bigger brain with room to spare. The comfortable all‑in‑one.</p>
+        <div class="spec"><span>From</span><span>~$599</span></div>
+        <div class="spec"><span>Memory</span><span>16 GB unified</span></div>
+        <div class="spec"><span>Chip</span><span>Apple M4</span></div>
+        <div class="spec"><span>Power</span><span>~5–30 W</span></div>
+        <div class="spec"><span>Runs</span><span>DiabeticDaily‑9B (27B quantized)</span></div>
+      </div>
+
+      <div class="bcard" style="grid-column:1 / -1;border-color:#F0DCA8;background:linear-gradient(180deg,#fffdf8,#fff);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
+          <h3 style="font-weight:800;font-size:19px;margin:0;">ZimaCube 2</h3>
+          <span class="tier" style="background:#2B2118;color:#F2B441;">Vault + biggest brain</span>
+        </div>
+        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">The full home server: many drive bays for years of records <em>plus</em> room for a GPU — so the same cube holds your vault and runs the largest brain.</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 28px;">
+          <div class="spec"><span>From</span><span>~$700+</span></div>
+          <div class="spec"><span>Storage</span><span>multi‑bay, RAID</span></div>
+          <div class="spec"><span>Memory</span><span>up to 64 GB</span></div>
+          <div class="spec"><span>Expansion</span><span>GPU bay</span></div>
+          <div class="spec"><span>Power</span><span>~30–80 W</span></div>
+          <div class="spec"><span>Runs</span><span>DiabeticDaily‑27B + vault</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== BASELINE / BYO ===== -->
+  <section style="background:#0B0F14;color:#E8EEF5;">
+    <div class="sec-pad" style="max-width:900px;margin:0 auto;">
+      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#F2B441;margin-bottom:14px;">Already have a device? Great.</div>
+      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 16px;color:#fff;">Here's the baseline it needs to hit</h2>
+      <p style="font-size:17px;line-height:1.7;color:#9aa7b3;margin:0 0 26px;">You don't have to buy anything new. A spare mini‑PC, Mac mini, or NAS often already clears the bar. If a device you own checks these, it can run the LifeBoard and the on‑box Bee:</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">MEMORY</div><div style="font-weight:700;font-size:17px;">~8 GB RAM</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">enough for the LifeBoard + the 4B brain</div></div>
+        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">STORAGE</div><div style="font-weight:700;font-size:17px;">~20 GB free</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">the brain + your growing vault</div></div>
+        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">COMPUTE</div><div style="font-weight:700;font-size:17px;">NPU / GPU or Apple Silicon</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">a modern x86 CPU runs the 4B too, just slower</div></div>
+        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">HOME</div><div style="font-weight:700;font-size:17px;">Always‑on, low power</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">sits on a shelf; sips electricity</div></div>
+      </div>
+      <p style="font-size:15px;line-height:1.65;color:#7d8893;margin:24px 0 0;">Bigger box, bigger brain: more memory and a real GPU step you up to the 9B and 27B brains for deeper answers. Start small — you can always grow.</p>
+    </div>
+  </section>
+
+  <!-- ===== PRIVACY-FIRST VALUE ===== -->
+  <section class="sec-pad" style="max-width:1000px;margin:0 auto;">
+    <div style="text-align:center;max-width:680px;margin:0 auto 36px;">
+      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">Why local‑first wins</div>
+      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 14px;">Your data is stored at home. <span style="color:#D99A2B;">Full stop.</span></h2>
+      <p style="font-size:17px;line-height:1.65;color:#6b5e4f;margin:0;">One law runs the whole thing — <strong>your private health data never leaves the box.</strong> Everything below follows from owning the hardware.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🔒</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No cloud dependency</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Works in an outage, a storm, off‑grid. The brain and your records are right there in the room.</p></div>
+      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🚫</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No subscription</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Free to you — sovereign‑compute income funds it. Pay once for the box; nothing monthly.</p></div>
+      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🙅</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No harvesting</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">No ads, no data sold, no profile built on your illness. The box works for you, not an advertiser.</p></div>
+      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🛡️</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No breach surface</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Your records aren't sitting in a company's cloud waiting to be hacked — they're on your shelf.</p></div>
+      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">📴</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">Yours to keep</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">No company can change the terms, raise the price, or shut it off. You own the box, the data, and the brain.</p></div>
+      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🐝</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">A brain you control</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Bee answers on the box, in plain English — organizing and explaining, never diagnosing or dosing.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section style="background:#F3ECDD;border-top:1px solid #ece3d2;">
+    <div class="sec-pad" style="max-width:760px;margin:0 auto;text-align:center;">
+      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 10px;"><span style="color:#2B2118;">Win</span> <span style="color:#D99A2B;">big.</span> on a box you own.</h2>
+      <p style="font-size:17px;line-height:1.6;color:#6b5e4f;margin:0 0 28px;">Every day — not someday. Join the first members and we'll help you get the right little box for your home.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="/join" style="text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;font-size:17px;padding:16px 30px;border-radius:13px;box-shadow:0 8px 20px -8px rgba(217,154,43,.8);">Join the first members</a>
+        <a href="/try" style="text-decoration:none;background:#fff;color:#2B2118;font-weight:700;font-size:17px;padding:15px 28px;border-radius:13px;border:1.5px solid #F2B441;">Try the Bee</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:#0B0F14;color:#9aa7b3;">
+  <div style="max-width:1140px;margin:0 auto;padding:68px 24px 40px;">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;"><svg width="28" height="31" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee-dark"></use></svg><span style="font-size:19px;letter-spacing:-0.3px;"><span style="font-weight:600;color:#E8EEF5;">Local</span><span style="font-weight:800;color:#F2B441;">Diabetic</span></span></div>
+    <p style="font-size:15px;color:#7d8893;max-width:60ch;margin:0 0 26px;line-height:1.6;">LocalDiabetic is the home &middot; DailyLifeOS is the system &middot; OpenDiabetic is the hive &middot; DiabeticLedger is the proof.</p>
+    <div class="mono" style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px;margin-bottom:28px;">
+      <a href="https://opendiabetic.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">OpenDiabetic</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://dailylifeos.org/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DailyLifeOS</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://diabeticdocs.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticDocs</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://diabeticnode.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticNode</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://diabeticdatasets.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticDatasets</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://diabeticmodels.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticModels</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://diabeticledger.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticLedger</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://diabeticdonation.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticDonation</a>
+    </div>
+    <div style="border-top:1px solid #1F2A36;padding-top:24px;font-size:13px;color:#5d6b78;line-height:1.7;">
+      <a href="mailto:build@localdiabetic.com" class="flink" style="color:#9aa7b3;text-decoration:none;">build@localdiabetic.com</a> &middot; HQ &middot; Jupiter, Florida &middot; 561.532.7120 &middot; <a href="https://x.com/localdiabetics" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">@localdiabetics</a> &middot; <a href="https://huggingface.co/SwarmandBee" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">Hugging Face</a> &middot; <a href="https://www.youtube.com/@LocalDiabeticwin" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">YouTube</a><br>
+      Owned &amp; operated by Swarm and Bee LLC &middot; DBA Swarm &amp; Bee AI &middot; Florida &middot; D-U-N-S 138652395 &middot; &copy; 2026 &middot; &ldquo;Give people what they need, not what you have.&rdquo;
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

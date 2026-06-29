@@ -132,6 +132,7 @@
     </a>
     <nav class="ld-nav" aria-label="Primary">
       <a href="/dailylocal" class="nav-link nav-sec">The DailyLocal</a>
+      <a href="/box" class="nav-link nav-sec">The Box</a>
       <a href="/try" class="nav-link nav-sec">Try it</a>
       <a href="/shop" class="nav-link nav-sec">Shop</a>
       <a href="/about" class="nav-link nav-sec">About</a>
@@ -455,7 +456,7 @@
       </div>
       <div id="ld-join-res" role="status" aria-live="polite" style="text-align:center;font-size:15px;margin:0 0 12px;"></div>
       <button type="submit" class="btn-primary" style="width:100%;background:#F2B441;color:#1a1205;font-weight:800;font-size:17px;font-family:inherit;border:none;border-radius:13px;padding:16px;cursor:pointer;box-shadow:0 8px 20px -8px rgba(217,154,43,.8);">Send it our way &rarr;</button>
-      <p style="font-size:13px;color:#9b8d7b;text-align:center;margin:16px 0 0;">Or email <a href="mailto:[email protected]" style="color:#D99A2B;font-weight:600;text-decoration:none;">[email protected]</a> &mdash; we read every message.</p>
+      <p style="font-size:13px;color:#9b8d7b;text-align:center;margin:16px 0 0;">Or email <a href="mailto:build@localdiabetic.com" style="color:#D99A2B;font-weight:600;text-decoration:none;">build@localdiabetic.com</a> &mdash; we read every message.</p>
     </form>
   </div>
   <p style="text-align:center;font-size:13.5px;color:#9b8d7b;max-width:62ch;margin:26px auto 0;line-height:1.6;">LocalDiabetic organizes, reminds, and explains &mdash; it is <strong style="color:#6b5e4f;font-weight:700;">not medical advice</strong> and does not replace your doctor. For emergencies, call&nbsp;911.</p>
@@ -490,7 +491,7 @@
       <a href="https://www.youtube.com/@LocalDiabeticwin" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">YouTube</a>
     </div>
     <div style="border-top:1px solid #1F2A36;padding-top:24px;font-size:13px;color:#5d6b78;line-height:1.7;">
-      <a href="mailto:[email protected]" class="flink" style="color:#9aa7b3;text-decoration:none;">[email protected]</a> &middot; Jupiter, Florida<br>
+      <a href="mailto:build@localdiabetic.com" class="flink" style="color:#9aa7b3;text-decoration:none;">build@localdiabetic.com</a> &middot; Jupiter, Florida<br>
       Owned &amp; operated by Swarm and Bee LLC &middot; &copy; 2026 &middot; &ldquo;Win big &mdash; every day, not someday.&rdquo;
     </div>
   </div>
@@ -520,7 +521,7 @@
       var r = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
       var d = {}; try{ d = await r.json(); }catch(e){}
       return { ok: r.ok && d.ok, error: d.error };
-    }catch(e){ return { ok:false, error:'Network hiccup — please email [email protected].' }; }
+    }catch(e){ return { ok:false, error:'Network hiccup — please email build@localdiabetic.com.' }; }
   }
 
   // Join form
@@ -539,7 +540,7 @@
       res.style.color='#6b5e4f'; res.textContent='';
       var out = await postJSON('/api/contact', { name:name, email:email, topic:audience, message:message, company:company });
       if(out.ok){ joinForm.reset(); res.style.color='#1f8f5d'; res.textContent='Got it — we’ll reach out personally. Thank you. 🐝'; }
-      else { res.style.color='#a8541f'; res.textContent = out.error || 'Something hiccuped — please email [email protected].'; }
+      else { res.style.color='#a8541f'; res.textContent = out.error || 'Something hiccuped — please email build@localdiabetic.com.'; }
       btn.disabled = false; btn.style.opacity='1'; btn.textContent = label;
     });
   }
@@ -558,7 +559,7 @@
       res.style.color='#9a7d3f'; res.textContent='';
       var out = await postJSON('/api/subscribe', { email:email, company:company });
       if(out.ok){ newsForm.reset(); res.style.color='#1f8f5d'; res.textContent='Welcome to The DailyLocal — check your inbox. 🐝'; }
-      else { res.style.color='#a8541f'; res.textContent = out.error || 'Couldn’t sign you up just now — email [email protected].'; }
+      else { res.style.color='#a8541f'; res.textContent = out.error || 'Couldn’t sign you up just now — email build@localdiabetic.com.'; }
       btn.disabled = false; btn.style.opacity='1'; btn.textContent = label;
     });
   }
