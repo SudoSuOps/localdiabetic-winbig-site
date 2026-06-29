@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Bee — your diabetic-life helper · LocalDiabetic</title>
+<meta name="description" content="Ask Bee: a live, private diabetic-life helper powered by LocalDiabetic's own 27B diabetic model, running 24/7. Feet, numbers, food, appointments — it organizes and educates, never diagnoses.">
+<link rel="canonical" href="https://localdiabetic.com/try">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<link rel="icon" href="/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon/bee.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/appicon-cream-180.png">
+<meta name="theme-color" content="#F2B441">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ask Bee — your diabetic-life helper">
+<meta property="og:description" content="A live, private diabetic-life helper on a box you own. Powered by our own 27B diabetic model, 24/7.">
+<meta property="og:image" content="/localdiabetic-og.png">
+<meta property="og:url" content="https://localdiabetic.com/try">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  html{scroll-behavior:smooth;}
+  body{margin:0;padding:0;background:#FBF7EF;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#2B2118;-webkit-font-smoothing:antialiased;line-height:1.65;}
+  *{box-sizing:border-box;}
+  a{color:inherit;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;}
+  @keyframes ld-pulse{0%,100%{opacity:.55;}50%{opacity:.95;}}
+  .nav-link{text-decoration:none;color:#6b5e4f;transition:color .15s;}
+  .nav-link:hover{color:#2B2118;}
+  .flink{transition:color .15s;}
+  .flink:hover{color:#F2B441;}
+  a:focus-visible,button:focus-visible{outline:3px solid rgba(242,180,65,.55);outline-offset:2px;border-radius:8px;}
+  .ld-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:500;}
+  textarea:focus{border-color:#F2B441 !important;outline:none;}
+  .chip{cursor:pointer;text-align:left;font-family:inherit;background:#fff;border:1px solid #ece3d2;border-radius:14px;padding:13px 16px;font-size:14.5px;color:#2B2118;line-height:1.4;transition:transform .18s,border-color .15s,box-shadow .18s;display:flex;align-items:center;gap:11px;}
+  .chip:hover{transform:translateY(-2px);border-color:#F0DCA8;box-shadow:0 12px 24px -18px rgba(43,33,24,.5);}
+  .chip svg{flex:0 0 auto;}
+  .send-btn{cursor:pointer;border:none;border-radius:13px;background:#F2B441;color:#1a1205;font-weight:800;font-family:inherit;transition:background .15s,opacity .15s;}
+  .send-btn:hover{background:#e9aa31;}
+  .send-btn:disabled{opacity:.5;cursor:default;}
+  .dot{width:7px;height:7px;border-radius:50%;background:#D99A2B;display:inline-block;animation:bee-bounce 1.2s infinite ease-in-out;}
+  .dot:nth-child(2){animation-delay:.18s;}
+  .dot:nth-child(3){animation-delay:.36s;}
+  @keyframes bee-bounce{0%,80%,100%{transform:translateY(0);opacity:.4;}40%{transform:translateY(-5px);opacity:1;}}
+  .chips-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  @media (max-width:680px){.chips-grid{grid-template-columns:1fr;}.ld-nav .nav-sec{display:none;}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;}}
+</style>
+</head>
+<body>
+
+<!-- ===== Bee sprite ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="bee" viewBox="0 0 120 132">
+    <path d="M54 20 C48 6 41 3 34 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round" fill="none"></path><path d="M66 20 C72 6 79 3 86 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round" fill="none"></path><circle cx="33" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"></circle><circle cx="87" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"></circle><ellipse cx="36" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(-24 36 54)"></ellipse><ellipse cx="84" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(24 84 54)"></ellipse><rect x="40" y="44" width="40" height="72" rx="20" fill="#F2B441" stroke="#2B2118" stroke-width="4.2"></rect><g clip-path="url(#beeclip)"><rect x="36" y="66" width="48" height="12" fill="#2B2118"></rect><rect x="36" y="90" width="48" height="12" fill="#2B2118"></rect></g><clipPath id="beeclip"><rect x="40" y="44" width="40" height="72" rx="20"></rect></clipPath><circle cx="60" cy="31" r="17" fill="#2B2118"></circle><circle cx="53" cy="29" r="3.4" fill="#FBF7EF"></circle><circle cx="67" cy="29" r="3.4" fill="#FBF7EF"></circle>
+  </symbol>
+</svg>
+
+<!-- ===== HEADER ===== -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(251,247,239,.85);backdrop-filter:blur(12px);border-bottom:1px solid #ece3d2;">
+  <div style="max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="/" style="display:flex;align-items:center;gap:11px;text-decoration:none;" aria-label="LocalDiabetic — Win big">
+      <svg width="32" height="35" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee"></use></svg>
+      <span style="display:flex;flex-direction:column;line-height:1;">
+        <span style="font-size:19px;letter-spacing:-0.3px;"><span style="font-weight:600;color:#2B2118;">Local</span><span style="font-weight:800;color:#D99A2B;">Diabetic</span></span>
+        <span style="font-size:13px;font-weight:900;letter-spacing:-0.2px;margin-top:4px;"><span style="color:#2B2118;">Win</span> <span style="color:#D99A2B;">big.</span></span>
+      </span>
+    </a>
+    <nav class="ld-nav" aria-label="Primary">
+      <a href="/dailylocal" class="nav-link nav-sec">The DailyLocal</a>
+      <a href="/try" class="nav-link" style="color:#D99A2B;font-weight:700;">Try it</a>
+      <a href="/shop" class="nav-link nav-sec">Shop</a>
+      <a href="/about" class="nav-link nav-sec">About</a>
+      <a href="/give" class="nav-link nav-sec">Give</a>
+      <a href="/join" class="nav-link" style="text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;padding:9px 18px;border-radius:11px;box-shadow:0 6px 16px -9px rgba(217,154,43,.8);">Join</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== CHAT ===== -->
+<main style="max-width:860px;margin:0 auto;padding:36px 20px 48px;">
+
+  <!-- intro -->
+  <div style="text-align:center;margin-bottom:24px;">
+    <div class="mono" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1f8f5d;background:rgba(47,182,122,.1);border:1px solid rgba(47,182,122,.32);border-radius:999px;padding:6px 13px;margin-bottom:16px;"><span style="width:8px;height:8px;border-radius:50%;background:#2FB67A;box-shadow:0 0 0 4px rgba(47,182,122,.18);"></span>Live &middot; 27B diabetic model &middot; 24/7</div>
+    <h1 style="font-weight:800;font-size:clamp(30px,4.6vw,46px);letter-spacing:-1.2px;line-height:1.06;margin:0 0 12px;">Ask <span style="color:#D99A2B;">Bee</span></h1>
+    <p style="font-size:17px;line-height:1.6;color:#6b5e4f;max-width:52ch;margin:0 auto;">Your diabetic-life helper &mdash; feet, numbers, food, meds, appointments. It organizes and explains in plain English.</p>
+  </div>
+
+  <!-- chat card -->
+  <div style="background:#fff;border:1px solid #ece3d2;border-radius:24px;box-shadow:0 2px 6px rgba(43,33,24,.04),0 40px 80px -54px rgba(43,33,24,.55);overflow:hidden;display:flex;flex-direction:column;height:min(72vh,680px);">
+
+    <!-- thread -->
+    <div id="bee-thread" style="flex:1;overflow-y:auto;padding:26px 22px;display:flex;flex-direction:column;gap:18px;">
+      <!-- greeting + chips injected here -->
+    </div>
+
+    <!-- input -->
+    <div style="border-top:1px solid #f0e8d8;background:#FBF7EF;padding:14px 16px;">
+      <form id="bee-form" style="display:flex;gap:10px;align-items:flex-end;">
+        <textarea id="bee-input" rows="1" placeholder="Ask Bee anything about your diabetic day…" aria-label="Ask Bee" style="flex:1;resize:none;max-height:140px;font-family:inherit;font-size:16px;line-height:1.5;color:#2B2118;background:#fff;border:1px solid #ece3d2;border-radius:14px;padding:13px 15px;"></textarea>
+        <button type="submit" class="send-btn" id="bee-send" style="padding:13px 22px;font-size:16px;flex:0 0 auto;">Send</button>
+      </form>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:11px;font-size:12px;color:#9b8d7b;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b8d7b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"></rect><path d="M8 10 V7 a4 4 0 0 1 8 0 V10"></path></svg>
+        <span>Private &middot; on a box you own &middot; nothing leaves the room</span>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:13px;color:#9b8d7b;margin:20px auto 0;max-width:58ch;line-height:1.6;">Bee organizes and educates &mdash; it never diagnoses. For changes to your care, talk with your clinician. In an emergency, call your local emergency number.</p>
+</main>
+
+<script>
+(function(){
+  var thread = document.getElementById('bee-thread');
+  var form = document.getElementById('bee-form');
+  var input = document.getElementById('bee-input');
+  var sendBtn = document.getElementById('bee-send');
+  var history = [];
+  var busy = false;
+
+  var STARTERS = [
+    { label: 'Give me a quick win for today', icon: '<path d="M13 2 L4 14 h7 l-1 8 L20 10 h-7 z"></path>' },
+    { label: 'What should I do for my feet today?', icon: '<path d="M14.5 7.5 c2.2 0 3.4 2.3 3.4 5 c0 2.3 -1 3.6 -1 5.8 c0 2.2 -1.6 3.7 -3.9 3.7 c-2.5 0 -4.2 -1.7 -4.2 -4.2 c0 -2.9 1.5 -3.6 1.5 -6.5 c0 -2.6 1.8 -3.8 4.2 -3.8 z"></path><circle cx="6.6" cy="9.5" r="1.2"></circle><circle cx="6.4" cy="13.4" r="1"></circle>' },
+    { label: 'Help me prepare for my doctor visit', icon: '<path d="M6 3 v5 a6 6 0 0 0 12 0 V3"></path><path d="M9 21 a3 3 0 0 1 6 0"></path><path d="M12 14 v7"></path>' },
+    { label: 'A low-glycemic breakfast idea?', icon: '<path d="M4 11 h16 a1 1 0 0 1 1 1 a6 6 0 0 1 -6 6 H9 a6 6 0 0 1 -6 -6 a1 1 0 0 1 1 -1 z"></path><path d="M8 7 c0 -1.5 1 -2 1 -3 M12 7 c0 -1.5 1 -2 1 -3 M16 7 c0 -1.5 1 -2 1 -3"></path>' },
+    { label: 'Explain my last A1C in plain English', icon: '<path d="M12 3 c0 0 6.2 6.6 6.2 10.8 a6.2 6.2 0 0 1 -12.4 0 C5.8 9.6 12 3 12 3 z"></path>' },
+    { label: 'Good daily habits for a Type 1?', icon: '<line x1="9" y1="7" x2="20" y2="7"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="17" x2="20" y2="17"></line><path d="M4 6.5 l1.2 1.2 L7.5 5"></path><path d="M4 11.5 l1.2 1.2 L7.5 10"></path><path d="M4 16.5 l1.2 1.2 L7.5 15"></path>' }
+  ];
+
+  function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+  function beeAvatar(){
+    return '<div style="width:38px;height:42px;flex:0 0 auto;"><svg width="38" height="42" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee"></use></svg></div>';
+  }
+
+  function addBee(text){
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:12px;align-items:flex-start;';
+    row.innerHTML = beeAvatar() +
+      '<div style="background:#FBF0D8;border:1px solid #F0DCA8;border-radius:6px 18px 18px 18px;padding:14px 17px;font-size:15.5px;line-height:1.6;color:#2B2118;max-width:78%;white-space:pre-wrap;">'+esc(text)+'</div>';
+    thread.appendChild(row);
+    scroll();
+    return row;
+  }
+
+  function addUser(text){
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;justify-content:flex-end;';
+    row.innerHTML = '<div style="background:#2B2118;color:#FBF7EF;border-radius:18px 6px 18px 18px;padding:13px 17px;font-size:15.5px;line-height:1.55;max-width:78%;white-space:pre-wrap;">'+esc(text)+'</div>';
+    thread.appendChild(row);
+    scroll();
+  }
+
+  function showChips(){
+    var wrap = document.createElement('div');
+    wrap.id = 'bee-chips';
+    wrap.style.cssText = 'margin:4px 0 2px 50px;';
+    wrap.innerHTML = '<div class="mono" style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9b8d7b;margin-bottom:11px;">Try one of these</div>';
+    var grid = document.createElement('div');
+    grid.className = 'chips-grid';
+    STARTERS.forEach(function(s){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D99A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+s.icon+'</svg><span>'+esc(s.label)+'</span>';
+      b.addEventListener('click', function(){ send(s.label); });
+      grid.appendChild(b);
+    });
+    wrap.appendChild(grid);
+    thread.appendChild(wrap);
+    scroll();
+  }
+
+  function removeChips(){ var c=document.getElementById('bee-chips'); if(c) c.remove(); }
+
+  function showTyping(){
+    var row = document.createElement('div');
+    row.id = 'bee-typing';
+    row.style.cssText = 'display:flex;gap:12px;align-items:center;';
+    row.innerHTML = beeAvatar() + '<div style="background:#FBF0D8;border:1px solid #F0DCA8;border-radius:6px 18px 18px 18px;padding:15px 18px;display:flex;gap:6px;"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+    thread.appendChild(row);
+    scroll();
+  }
+  function removeTyping(){ var t=document.getElementById('bee-typing'); if(t) t.remove(); }
+
+  function scroll(){ thread.scrollTop = thread.scrollHeight; }
+
+  async function send(text){
+    text = (text||'').trim();
+    if(!text || busy) return;
+    busy = true; sendBtn.disabled = true;
+    removeChips();
+    addUser(text);
+    history.push({ role:'user', content:text });
+    input.value=''; autosize();
+    showTyping();
+    try{
+      var r = await fetch('/api/bee', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ message:text, history:history })
+      });
+      var data = {};
+      try{ data = await r.json(); }catch(e){}
+      removeTyping();
+      var reply = data.reply || data.text || data.message || data.response;
+      if(r.ok && reply){
+        addBee(reply);
+        history.push({ role:'assistant', content:reply });
+      } else {
+        addBee("I couldn't reach the hive just now. Give me a moment and try again — or email build@localdiabetic.com and we'll help. 🐝");
+      }
+    }catch(e){
+      removeTyping();
+      addBee("Looks like the connection dropped. Try again in a moment — your message stayed on your box. 🐝");
+    }
+    busy = false; sendBtn.disabled = false; input.focus();
+  }
+
+  function autosize(){ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,140)+'px'; }
+
+  form.addEventListener('submit', function(e){ e.preventDefault(); send(input.value); });
+  input.addEventListener('input', autosize);
+  input.addEventListener('keydown', function(e){
+    if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send(input.value); }
+  });
+
+  // boot
+  addBee("Hi, I'm Bee — your diabetic-life helper. I can help with your feet, your numbers, meals, meds, and getting ready for appointments. What's on your mind today?");
+  showChips();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 64" role="img" aria-label="LocalDiabetic">
+  <title>LocalDiabetic</title>
+  <!-- hand + vault hex -->
+  <g transform="translate(8 8)">
+    <polygon points="24,8 38,16 38,32 24,40 10,32 10,16" fill="#D99A2B"/>
+    <polygon points="24,14 32,18.5 32,29.5 24,34 16,29.5 16,18.5" fill="#FBF7EF"/>
+    <path d="M6 44 q4 -10 18 -10 q14 0 18 10" fill="none" stroke="#2B2118" stroke-width="3" stroke-linecap="round"/>
+    <line x1="2" y1="48" x2="46" y2="48" stroke="#2FB67A" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <!-- wordmark -->
+  <text x="74" y="42" font-family="'Inter',system-ui,Arial,sans-serif" font-size="30" letter-spacing="-0.5">
+    <tspan fill="#2B2118" font-weight="400">Local</tspan><tspan fill="#D99A2B" font-weight="800">Diabetic</tspan>
+  </text>
+  <!-- vault-check at seam -->
+  <path d="M150 18 l4 4 l7 -8" fill="none" stroke="#2FB67A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

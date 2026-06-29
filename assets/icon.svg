@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LocalDiabetic app icon">
+  <title>LocalDiabetic</title>
+  <rect width="512" height="512" rx="112" fill="#FBF7EF"/>
+  <rect width="512" height="512" rx="112" fill="url(#lg)"/>
+  <defs>
+    <radialGradient id="lg" cx="50%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#D99A2B" stop-opacity="0.16"/>
+      <stop offset="60%" stop-color="#FBF7EF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(256 248)">
+    <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75" fill="#D99A2B"/>
+    <polygon points="0,-104 90,-52 90,52 0,104 -90,52 -90,-52" fill="#FBF7EF"/>
+    <path d="M0,-44 V44 M-44,0 H44" stroke="#D99A2B" stroke-width="22" stroke-linecap="round"/>
+  </g>
+  <path d="M96 432 q56 -64 160 -64 q104 0 160 64" fill="none" stroke="#2B2118" stroke-width="22" stroke-linecap="round"/>
+</svg>

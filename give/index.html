@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help carry the day — LocalDiabetic</title>
+<meta name="description" content="Simple, warm, built for real life. LocalDiabetic helps you win the day with diabetes — records, reminders, and a diabetic-smart helper on a little box at home. Private, free. Win big, every day — not someday.">
+<link rel="canonical" href="https://localdiabetic.com/give">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:url" content="https://localdiabetic.com/">
+<meta name="twitter:site" content="@localdiabetics">
+<!-- ============================================================
+     LocalDiabetic 🐝 — drop-in <head> tags
+     Place the contents of /favicon/ at your site root (or adjust paths).
+     ============================================================ -->
+
+<!-- Classic favicon (multi-res: 16/32/48) -->
+<link rel="icon" href="/favicon/favicon.ico" sizes="any">
+
+<!-- Modern SVG favicon (crisp at any size; preferred where supported) -->
+<link rel="icon" type="image/svg+xml" href="/favicon/bee.svg">
+
+<!-- PNG fallbacks -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/bee-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/bee-32.png">
+
+<!-- iOS / iPadOS home-screen icon (use the cream tile so it reads on any wallpaper) -->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/appicon-cream-180.png">
+
+<!-- Theme color (honey) for mobile browser chrome -->
+<meta name="theme-color" content="#F2B441">
+
+<!-- ---------- Open Graph / social sharing ---------- -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="LocalDiabetic — Simple, warm, built for real life">
+<meta property="og:description" content="Win big — every day, not someday. Simple, warm, built for real life. Your diabetic life, organized and private at home.">
+<meta property="og:image" content="/localdiabetic-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- ---------- Twitter / X ---------- -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LocalDiabetic — Simple, warm, built for real life">
+<meta name="twitter:description" content="Win big — every day, not someday. Simple, warm, built for real life.">
+<meta name="twitter:image" content="/localdiabetic-og.png">
+
+<!-- ---------- PWA manifest (optional; see site.webmanifest below) ---------- -->
+<link rel="manifest" href="/favicon/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth;}
+  body{margin:0;padding:0;background:#FBF7EF;}
+  *{box-sizing:border-box;}
+  @keyframes ld-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+  a{color:inherit;}
+</style>
+<style>input:focus,textarea:focus{border-color:#F2B441 !important;outline:none}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://localdiabetic.com/#org",
+      "name": "LocalDiabetic",
+      "url": "https://localdiabetic.com",
+      "logo": "https://localdiabetic.com/favicon/bee.svg",
+      "image": "https://localdiabetic.com/localdiabetic-og.png",
+      "description": "A private, free, at-home diabetic-life organizer: records, reminders, and a small on-box AI helper that never leaves your house. Built by a Type 1 diabetic. It organizes, reminds, and explains; it is not medical advice and does not replace a doctor.",
+      "slogan": "Diabetes is a 24/7 job. You don't have to carry it alone.",
+      "isPartOf": {
+        "@type": "NGO",
+        "name": "OpenDiabetic",
+        "url": "https://opendiabetic.com"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Donovan Mackey",
+        "description": "Type 1 diabetic living the full continuum; builds LocalDiabetic from lived experience."
+      },
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Jupiter, Florida, USA"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jupiter",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "email": "build@localdiabetic.com",
+      "telephone": "+1-561-532-7120",
+      "sameAs": [
+        "https://x.com/localdiabetics",
+        "https://www.youtube.com/@LocalDiabeticwin",
+        "https://opendiabetic.com",
+        "https://dailylifeos.org",
+        "https://diabeticdocs.com",
+        "https://diabeticnode.com",
+        "https://diabeticdatasets.com",
+        "https://diabeticmodels.com",
+        "https://diabeticledger.com",
+        "https://diabeticdonation.com",
+        "https://huggingface.co/SwarmandBee",
+        "https://github.com/SudoSuOps"
+      ],
+      "knowsAbout": [
+        "diabetes self-management",
+        "diabetic foot care",
+        "medication reminders",
+        "private health records",
+        "on-box AI",
+        "edge AI",
+        "blood glucose literacy"
+      ],
+      "disambiguatingDescription": "Not a medical provider or device. Organizes records, sends reminders, and helps prepare for appointments; always advises confirming medical decisions with a clinician.",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Swarm and Bee LLC",
+        "legalName": "Swarm and Bee LLC",
+        "alternateName": "Swarm & Bee AI",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "FL",
+          "addressCountry": "US"
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "SAM UEI",
+            "value": "L9EXVH9L9VU6"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "CAGE",
+            "value": "20YM3"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "DUNS",
+            "value": "138652395"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://localdiabetic.com/#website",
+      "url": "https://localdiabetic.com",
+      "name": "LocalDiabetic",
+      "description": "Your diabetic life, organized and private \u2014 on a box you own, free.",
+      "publisher": {
+        "@id": "https://localdiabetic.com/#org"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+}
+</script>
+</head>
+<body style="margin:0;background:#FBF7EF;">
+<header style="position:sticky;top:0;z-index:50;background:rgba(251,247,239,.85);backdrop-filter:blur(12px);border-bottom:1px solid #ece3d2;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;">
+  <div style="max-width:1140px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="/" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
+      <svg width="30" height="33" viewBox="0 0 120 132" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible">
+        <path d="M54 20 C48 6 41 3 34 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round"></path><path d="M66 20 C72 6 79 3 86 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round"></path><circle cx="33" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"></circle><circle cx="87" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"></circle><ellipse cx="36" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(-24 36 54)"></ellipse><ellipse cx="84" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(24 84 54)"></ellipse><rect x="40" y="44" width="40" height="72" rx="20" fill="#F2B441" stroke="#2B2118" stroke-width="4.2"></rect><g clip-path="url(#hbk)"><rect x="36" y="66" width="48" height="12" fill="#2B2118"></rect><rect x="36" y="90" width="48" height="12" fill="#2B2118"></rect></g><clipPath id="hbk"><rect x="40" y="44" width="40" height="72" rx="20"></rect></clipPath><circle cx="60" cy="31" r="17" fill="#2B2118"></circle><circle cx="53" cy="29" r="3.4" fill="#FBF7EF"></circle><circle cx="67" cy="29" r="3.4" fill="#FBF7EF"></circle>
+      </svg>
+      <span style="display:flex;flex-direction:column;line-height:1;"><span style="font-size:19px;letter-spacing:-0.3px;"><span style="font-weight:600;color:#2B2118;">Local</span><span style="font-weight:800;color:#D99A2B;">Diabetic</span></span><span style="font-size:13px;font-weight:900;letter-spacing:-0.2px;margin-top:4px;"><span style="color:#2B2118;">Win</span> <span style="color:#D99A2B;">big.</span></span></span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:26px;font-size:14.5px;font-weight:500;color:#6b5e4f;">
+      <a href="/dailylocal" style="text-decoration:none;color:#6b5e4f;">The DailyLocal</a>
+      <a href="/try" style="text-decoration:none;color:#6b5e4f;">Try it</a>
+      <a href="/shop" style="text-decoration:none;color:#6b5e4f;">Shop</a>
+      <a href="/about" style="text-decoration:none;color:#6b5e4f;">About</a>
+      <a href="/give" style="text-decoration:none;color:#D99A2B;font-weight:700;">Give</a>
+      <a href="/join" style="text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;padding:9px 18px;border-radius:11px;box-shadow:0 6px 16px -9px rgba(217,154,43,.8);">Join</a>
+    </nav>
+  </div>
+</header>
+<main style="font-family:'Inter',-apple-system,sans-serif;color:#2B2118;background:#FBF7EF;">
+  <!-- thank-you banner (after a gift) -->
+  <div id="thanks" style="display:none;max-width:760px;margin:22px auto 0;padding:0 24px;">
+    <div style="background:rgba(47,182,122,.10);border:1px solid rgba(47,182,122,.35);border-radius:14px;padding:16px 20px;font-size:15.5px;color:#2B2118;text-align:center;">
+      Thank you. 🐝 Your gift helps carry someone's day — we'll put it to work and we'll ship.
+    </div>
+  </div>
+
+  <!-- hero -->
+  <section style="max-width:820px;margin:0 auto;padding:64px 24px 26px;text-align:center;">
+    <svg width="44" height="48" viewBox="0 0 120 132" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;overflow:visible">
+<path d="M54 20 C48 6 41 3 34 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round"/><path d="M66 20 C72 6 79 3 86 5" stroke="#2B2118" stroke-width="4.2" stroke-linecap="round"/><circle cx="33" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"/><circle cx="87" cy="5" r="4.4" fill="#F2B441" stroke="#2B2118" stroke-width="3"/><ellipse cx="36" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(-24 36 54)"/><ellipse cx="84" cy="54" rx="19" ry="26" fill="#FCE4B0" stroke="#2B2118" stroke-width="4.2" transform="rotate(24 84 54)"/><rect x="40" y="44" width="40" height="72" rx="20" fill="#F2B441" stroke="#2B2118" stroke-width="4.2"/><g clip-path="url(#gbk)"><rect x="36" y="66" width="48" height="12" fill="#2B2118"/><rect x="36" y="90" width="48" height="12" fill="#2B2118"/></g><clipPath id="gbk"><rect x="40" y="44" width="40" height="72" rx="20"/></clipPath><circle cx="60" cy="31" r="17" fill="#2B2118"/><circle cx="53" cy="29" r="3.4" fill="#FBF7EF"/><circle cx="67" cy="29" r="3.4" fill="#FBF7EF"/></svg>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#D99A2B;font-weight:600;margin:20px 0 14px;">Give back · no pressure, ever</div>
+    <h1 style="font-size:clamp(40px,7vw,68px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin:0;">Help carry <span style="color:#D99A2B">the day.</span></h1>
+    <p style="font-size:clamp(17px,2.4vw,21px);line-height:1.55;color:#6b5e4f;max-width:640px;margin:24px auto 0;font-weight:500;">
+      LocalDiabetic costs you nothing — and <b style="color:#2B2118">we'll never ask.</b>
+      If you choose to give, we'll just say thank you, and we'll ship.
+    </p>
+  </section>
+
+  <!-- what it does -->
+  <section style="max-width:820px;margin:0 auto;padding:18px 24px 40px;text-align:center;">
+    <div style="background:#fff;border:1px solid #ece3d2;border-radius:18px;padding:34px 30px;box-shadow:0 30px 60px -50px rgba(43,33,24,.5);">
+      <div style="font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.02em;line-height:1.3;">
+        Every gift — cash or compute — ships <span style="color:#D99A2B">free daily-life devices</span> to LocalDiabetic members.
+      </div>
+      <p style="font-size:16px;line-height:1.6;color:#6b5e4f;max-width:600px;margin:16px auto 0;">
+        It's about them. Give people what they <i>need</i>, not what you have. <b style="color:#2B2118">Dignity, not charity.</b>
+        Membership is free either way — a gift never buys a spot, it sends a device.
+      </p>
+    </div>
+  </section>
+
+  <!-- two calm ways to give -->
+  <section style="max-width:900px;margin:0 auto;padding:6px 24px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+    <!-- cash -->
+    <div style="background:#fff;border:1px solid #ece3d2;border-radius:18px;padding:28px;">
+      <div style="font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#D99A2B;font-weight:700;">Give cash</div>
+      <div style="font-size:23px;font-weight:800;letter-spacing:-.02em;margin:8px 0 4px;">Pay it forward</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 18px;">A device shipped to a member who needs it. Pick an amount — or choose your own.</p>
+      <div id="amts" style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px;">
+        <button data-c="1500" class="amt">$15</button>
+        <button data-c="3500" class="amt amtsel">$35</button>
+        <button data-c="7500" class="amt">$75</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;border:1px solid #e3d9c5;border-radius:11px;padding:0 12px;margin-bottom:14px;background:#FBF7EF;">
+        <span style="color:#6b5e4f;font-weight:700;">$</span>
+        <input id="custom" type="number" min="5" max="5000" placeholder="other amount" inputmode="numeric"
+          style="border:0;background:transparent;padding:11px 0;width:100%;font-family:inherit;font-size:15px;color:#2B2118;outline:none;">
+      </div>
+      <button id="give" style="display:block;width:100%;text-align:center;background:#F2B441;color:#1a1205;font-weight:800;padding:13px;border:0;border-radius:12px;font-family:inherit;font-size:15.5px;cursor:pointer;box-shadow:0 8px 20px -10px rgba(217,154,43,.8);">Give <span id="giveamt">$35</span> · ship a device</button>
+      <div style="font-size:12px;color:#9b8d7b;text-align:center;margin-top:10px;">Secure checkout by Stripe · one-time · no account needed</div>
+    </div>
+    <!-- compute -->
+    <div style="background:#0B0F14;border:1px solid #1f2a36;border-radius:18px;padding:28px;color:#FCE4B0;">
+      <div style="font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#F2B441;font-weight:700;">Give compute</div>
+      <div style="font-size:23px;font-weight:800;letter-spacing:-.02em;margin:8px 0 4px;color:#E8EEF5;">Cycles become care</div>
+      <p style="font-size:14.5px;color:#9aa7b3;line-height:1.55;margin:0 0 18px;">
+        Have a GPU or spare cycles? Point them at the engine. Compute earns — and the proceeds ship devices. The gift that keeps on giving.
+      </p>
+      <a href="mailto:build@opendiabetic.com?subject=Compute%20donation%20%E2%80%94%20Help%20carry%20the%20day&body=I'd%20like%20to%20donate%20compute.%20Here's%20what%20I've%20got%3A%0A%0AGPU(s)%3A%0AHours%2Favailability%3A%0ALocation%3A%0A"
+        style="display:block;width:100%;box-sizing:border-box;text-align:center;background:#F2B441;color:#1a1205;font-weight:800;padding:13px;border-radius:12px;text-decoration:none;font-size:15.5px;">Donate compute →</a>
+      <div style="font-size:12px;color:#7d8893;text-align:center;margin-top:10px;">Powered by NVIDIA Blackwell · the diabetic-compute-engine</div>
+    </div>
+  </section>
+
+  <!-- transparency -->
+  <section style="max-width:820px;margin:0 auto;padding:14px 24px 30px;">
+    <div style="border-top:1px solid #ece3d2;padding-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;font-size:14.5px;color:#6b5e4f;line-height:1.55;">
+      <div><b style="color:#2B2118">Where it goes.</b><br>Free daily-life devices, shipped to members. Nothing skimmed for noise.</div>
+      <div><b style="color:#2B2118">Proof, not promises.</b><br>Built on DefendableOS — every gift receipted. Show the math, never trust-me-bro.</div>
+      <div><b style="color:#2B2118">No strings.</b><br>We'll never sell your info or pester you. Give once, give never — the door stays open.</div>
+    </div>
+  </section>
+
+  <!-- calm closer -->
+  <section style="max-width:820px;margin:0 auto;padding:10px 24px 70px;text-align:center;">
+    <p style="font-size:18px;font-weight:600;color:#2B2118;margin:0;">Diabetes is a 24/7 job. You don't have to carry it alone.</p>
+    <p style="font-size:15px;color:#6b5e4f;margin:10px 0 0;">Win big — every day. Not someday. 🐝</p>
+    <p style="font-size:12.5px;color:#9b8d7b;margin:22px 0 0;">General education, not medical advice. Donations are voluntary gifts and are not tax-deductible at this time.</p>
+  </section>
+</main>
+
+<style>
+  .amt{flex:1;min-width:64px;background:#fff;border:1.5px solid #e3d9c5;color:#2B2118;font-weight:800;font-size:15px;padding:11px 0;border-radius:11px;font-family:inherit;cursor:pointer;}
+  .amt.amtsel{border-color:#D99A2B;background:rgba(242,180,65,.12);}
+</style>
+<script>
+  (function(){
+    var sel=3500;
+    var giveAmt=document.getElementById('giveamt');
+    var custom=document.getElementById('custom');
+    function setSel(c){ sel=c; giveAmt.textContent='$'+(c/100).toFixed(0); }
+    document.querySelectorAll('.amt').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.amt').forEach(function(x){x.classList.remove('amtsel')});
+        b.classList.add('amtsel'); custom.value=''; setSel(parseInt(b.getAttribute('data-c'),10));
+      });
+    });
+    custom.addEventListener('input',function(){
+      var v=parseInt(custom.value,10);
+      document.querySelectorAll('.amt').forEach(function(x){x.classList.remove('amtsel')});
+      if(v>0) setSel(Math.round(v*100));
+    });
+    document.getElementById('give').addEventListener('click',function(){
+      var btn=this; btn.disabled=true; var t=giveAmt.textContent; giveAmt.textContent='…';
+      fetch('/api/donate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cents:sel})})
+        .then(function(r){return r.json()}).then(function(d){
+          if(d.url){location.href=d.url;} else {alert(d.error||'Something went wrong.');btn.disabled=false;giveAmt.textContent=t;}
+        }).catch(function(){alert('Network error.');btn.disabled=false;giveAmt.textContent=t;});
+    });
+    if(/[?&]thanks=1/.test(location.search)){var th=document.getElementById('thanks');if(th)th.style.display='block';}
+  })();
+</script>
+<footer style="background:#0B0F14;color:#9aa7b3;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;">
+  <div style="max-width:1140px;margin:0 auto;padding:72px 24px 40px;">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:20px;">
+      <svg width="28" height="31" viewBox="0 0 120 132" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible">
+        <path d="M54 20 C48 6 41 3 34 5" stroke="#0B0F14" stroke-width="4.2" stroke-linecap="round"></path><path d="M66 20 C72 6 79 3 86 5" stroke="#0B0F14" stroke-width="4.2" stroke-linecap="round"></path><circle cx="33" cy="5" r="4.4" fill="#F2B441" stroke="#0B0F14" stroke-width="3"></circle><circle cx="87" cy="5" r="4.4" fill="#F2B441" stroke="#0B0F14" stroke-width="3"></circle><ellipse cx="36" cy="54" rx="19" ry="26" fill="#3a3526" stroke="#F2B441" stroke-width="3" transform="rotate(-24 36 54)"></ellipse><ellipse cx="84" cy="54" rx="19" ry="26" fill="#3a3526" stroke="#F2B441" stroke-width="3" transform="rotate(24 84 54)"></ellipse><rect x="40" y="44" width="40" height="72" rx="20" fill="#F2B441" stroke="#0B0F14" stroke-width="4.2"></rect><g clip-path="url(#fbk)"><rect x="36" y="66" width="48" height="12" fill="#0B0F14"></rect><rect x="36" y="90" width="48" height="12" fill="#0B0F14"></rect></g><clipPath id="fbk"><rect x="40" y="44" width="40" height="72" rx="20"></rect></clipPath><circle cx="60" cy="31" r="17" fill="#E8EEF5"></circle><circle cx="53" cy="29" r="3.4" fill="#0B0F14"></circle><circle cx="67" cy="29" r="3.4" fill="#0B0F14"></circle>
+      </svg>
+      <span style="font-size:19px;letter-spacing:-0.3px;"><span style="font-weight:600;color:#E8EEF5;">Local</span><span style="font-weight:800;color:#F2B441;">Diabetic</span></span>
+    </div>
+    <p style="font-size:15px;color:#7d8893;max-width:60ch;margin:0 0 28px;line-height:1.6;">LocalDiabetic is the home · DailyLifeOS is the system · OpenDiabetic is the hive · DiabeticLedger is the proof.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;margin-bottom:32px;">
+      <a href="https://opendiabetic.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">OpenDiabetic</a>
+      <a href="https://dailylifeos.org/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DailyLifeOS</a>
+      <a href="https://diabeticdocs.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DiabeticDocs</a>
+      <a href="https://diabeticnode.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DiabeticNode</a>
+      <a href="https://diabeticdatasets.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DiabeticDatasets</a>
+      <a href="https://diabeticmodels.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DiabeticModels</a>
+      <a href="https://diabeticledger.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DiabeticLedger</a>
+      <a href="https://diabeticdonation.com/" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">DiabeticDonation</a>
+    </div>
+    <div style="border-top:1px solid #1F2A36;padding-top:26px;">
+      <div style="font-size:13px;color:#5d6b78;line-height:1.7;">
+        <a href="mailto:build@localdiabetic.com" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">build@localdiabetic.com</a> · HQ · Jupiter, Florida · 561.532.7120 · <a href="https://x.com/localdiabetics" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">@localdiabetics</a> · <a href="https://www.youtube.com/@LocalDiabeticwin" target="_blank" rel="noopener" style="color:#9aa7b3;text-decoration:none;" data-h="color:#F2B441;">YouTube</a><br>
+        Owned &amp; operated by Swarm and Bee LLC · DBA Swarm &amp; Bee AI · Florida<br>
+        D-U-N-S 138652395 · © 2026 · “Give people what they need, not what you have.”
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

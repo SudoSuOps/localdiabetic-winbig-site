@@ -1,0 +1,14 @@
+{
+  "name": "LocalDiabetic",
+  "short_name": "LocalDiabetic",
+  "description": "A private, free, at-home diabetic-life organizer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7EF",
+  "theme_color": "#F2B441",
+  "icons": [
+    { "src": "/favicon/appicon-cream-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon/appicon-cream-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon/appicon-cream-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

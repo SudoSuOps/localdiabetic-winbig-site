@@ -1,0 +1,27 @@
+# LocalDiabetic
+
+> LocalDiabetic is a private, free home system for people living with diabetes: it puts your records,
+> reminders, and a diabetic-smart AI helper on a small box you own (a Jetson, a NAS, a mini-PC) — organized,
+> private, and free. Your information never leaves your house. Built by a Type 1 diabetic (Donovan Mackey,
+> who lost toes and had 14+ foot surgeries). It organizes, reminds, and explains — it is NOT medical advice
+> and does not replace a doctor; for emergencies call 911.
+
+## What it is
+- The home box of the OpenDiabetic ecosystem. It runs **DailyLifeOS** (the digital life operating system for
+  diabetics) and shows the **LifeBoard** — the screen you wake up to (next appointment, today's meds, A1C
+  trend, supplies running low, refills due, emergency contact), all built from your own records, on your box.
+- The AI helper runs on the **DiabeticDaily** models — diabetic/medical models cooked by Swarm and Bee LLC and
+  proven to beat their base model by +40% to +57% on held-out medical text. Open on HuggingFace
+  (huggingface.co/SwarmandBee): DiabeticDaily-27B, DiabeticDaily-9B, DiabeticDaily-4B (runs on a $249 Jetson).
+- THE ONE LAW (the firewall): **PHI never leaves your box.** The brain runs on the box, answers on the box,
+  and nothing private ever leaves it. Models flow down from the hive; only non-PHI receipts flow up.
+
+## The promise
+- **Free** — costs you nothing; compute income funds it. **Private** — records never leave your home.
+  **A hand on your shoulder** — reminders, family check-ins, and real-world help (rides, diabetic shoes,
+  supplies) as the doors open.
+
+## The ecosystem
+- OpenDiabetic (the hive): https://opendiabetic.com · DailyLifeOS (the system): https://dailylifeos.org
+- The models: https://huggingface.co/SwarmandBee · The proof: https://diabeticledger.com
+- Operator: Swarm and Bee LLC · Jupiter FL · build@localdiabetic.com · SAM UEI L9EXVH9L9VU6

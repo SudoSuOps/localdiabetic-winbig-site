@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="LocalDiabetic mark">
+  <title>LocalDiabetic hand vault</title>
+  <polygon points="24,5 40,14 40,32 24,41 8,32 8,14" fill="#D99A2B"/>
+  <polygon points="24,12 33,17 33,29 24,34 15,29 15,17" fill="#FBF7EF"/>
+  <path d="M24 19 v8 M20 23 h8" stroke="#D99A2B" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M6 44 q5 -11 18 -11 q13 0 18 11" fill="none" stroke="#2B2118" stroke-width="3" stroke-linecap="round"/>
+</svg>
