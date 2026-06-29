@@ -142,12 +142,34 @@
     return '<div style="width:38px;height:42px;flex:0 0 auto;"><svg width="38" height="42" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee"></use></svg></div>';
   }
 
-  function addBee(text){
+  function addBee(text, withActions){
     var row = document.createElement('div');
     row.style.cssText = 'display:flex;gap:12px;align-items:flex-start;';
+    var bs='background:none;border:none;padding:0;cursor:pointer;font:600 12.5px/1 \'Inter\',-apple-system,sans-serif;color:#9b8d7b;display:inline-flex;align-items:center;gap:5px;';
+    var copyIco='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+    var shareIco='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>';
+    var actions = withActions ?
+      '<div style="display:flex;gap:16px;margin-top:8px;padding-left:2px;">'+
+        '<button type="button" class="bee-copy" style="'+bs+'">'+copyIco+'Copy</button>'+
+        '<button type="button" class="bee-share" style="'+bs+'">'+shareIco+'Share</button>'+
+      '</div>' : '';
     row.innerHTML = beeAvatar() +
-      '<div style="background:#FBF0D8;border:1px solid #F0DCA8;border-radius:6px 18px 18px 18px;padding:14px 17px;font-size:15.5px;line-height:1.6;color:#2B2118;max-width:78%;white-space:pre-wrap;">'+esc(text)+'</div>';
+      '<div style="max-width:78%;"><div style="background:#FBF0D8;border:1px solid #F0DCA8;border-radius:6px 18px 18px 18px;padding:14px 17px;font-size:15.5px;line-height:1.6;color:#2B2118;white-space:pre-wrap;">'+esc(text)+'</div>'+actions+'</div>';
     thread.appendChild(row);
+    if(withActions){
+      var cb=row.querySelector('.bee-copy'), sb=row.querySelector('.bee-share');
+      function flash(el,msg){ var o=el.innerHTML; el.innerHTML=msg; setTimeout(function(){el.innerHTML=o;},1500); }
+      cb.addEventListener('click',function(){
+        if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){flash(cb,'Copied ✓');}); }
+        else window.prompt('Copy this answer:', text);
+      });
+      sb.addEventListener('click',function(){
+        var msg=text+'\n\n— Bee · localdiabetic.com';
+        if(navigator.share){ navigator.share({title:'Bee · LocalDiabetic',text:msg,url:'https://localdiabetic.com/try'}).catch(function(){}); return; }
+        if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(msg+' https://localdiabetic.com/try').then(function(){flash(sb,'Copied ✓');}); }
+        else window.prompt('Copy to share:', msg);
+      });
+    }
     scroll();
     return row;
   }
@@ -214,7 +236,7 @@
       removeTyping();
       var reply = data.reply || data.text || data.message || data.response;
       if(r.ok && reply){
-        addBee(reply);
+        addBee(reply, true);
         history.push({ role:'assistant', content:reply });
       } else {
         addBee("I couldn't reach the hive just now. Give me a moment and try again — or email build@localdiabetic.com and we'll help. 🐝");
