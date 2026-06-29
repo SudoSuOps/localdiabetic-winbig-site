@@ -118,6 +118,39 @@
   <p style="text-align:center;font-size:13px;color:#9b8d7b;margin:20px auto 0;max-width:58ch;line-height:1.6;">Bee organizes and educates &mdash; it never diagnoses. For changes to your care, talk with your clinician. In an emergency, call your local emergency number.</p>
 </main>
 
+<!-- ===== MEET / DEFEND BEE ===== -->
+<section style="background:#0B0F14;color:#E8EEF5;border-top:1px solid #1F2A36;">
+  <div style="max-width:980px;margin:0 auto;padding:64px 24px;text-align:center;">
+    <div class="mono" style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F2B441;margin-bottom:14px;">Who is Bee</div>
+    <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,40px);letter-spacing:-1px;line-height:1.12;margin:0 0 12px;color:#fff;">Not a chatbot. A verified diabetic model.</h2>
+    <p style="font-size:17px;line-height:1.6;color:#9aa7b3;max-width:62ch;margin:0 auto 28px;">Bee is cooked in-house on 416,967 curated diabetes &amp; medical examples, beat her base model on a held-out eval, and is built to do the work &mdash; never to play doctor. Here&rsquo;s the proof.</p>
+    <figure style="margin:0;">
+      <iframe src="/media/meet-bee/?v=1" title="Meet Bee — a verified, defendable diabetic model" loading="lazy" allow="fullscreen" style="width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid #1F2A36;background:#0c0a07;box-shadow:0 30px 60px -40px rgba(0,0,0,.7);"></iframe>
+      <figcaption class="mono" style="font-size:12px;letter-spacing:.04em;color:#5d6b78;margin-top:12px;">Meet Bee &middot; ~1 minute &middot; tap for sound</figcaption>
+    </figure>
+    <div style="margin-top:22px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://huggingface.co/SwarmandBee" target="_blank" rel="noopener" style="text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;font-size:15px;padding:12px 22px;border-radius:12px;">Bee is open-source &middot; Hugging Face</a>
+      <button type="button" class="ld-share" data-url="https://localdiabetic.com/try" data-title="Meet Bee — not a chatbot, a verified open-source diabetic model that beat its base and builds for real life. LocalDiabetic · Win big." style="font:700 14px/1 'Inter',-apple-system,sans-serif;color:#E8EEF5;background:rgba(255,255,255,0.06);border:1px solid #1F2A36;border-radius:12px;padding:12px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F2B441" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+        Share Bee
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // share buttons (native share sheet on mobile, copy-link fallback)
+  document.querySelectorAll('.ld-share').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var url=btn.getAttribute('data-url'), title=btn.getAttribute('data-title');
+      if(navigator.share){ navigator.share({title:title,text:title,url:url}).catch(function(){}); return; }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ var o=btn.innerHTML; navigator.clipboard.writeText(url).then(function(){ btn.innerHTML='Link copied ✓'; setTimeout(function(){btn.innerHTML=o;},1600); }); }
+      else { window.prompt('Copy this link:', url); }
+    });
+  });
+})();
+</script>
 <script>
 (function(){
   var thread = document.getElementById('bee-thread');
