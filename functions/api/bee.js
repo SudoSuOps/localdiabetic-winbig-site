@@ -12,8 +12,7 @@ const HIVE_DOWN = "I couldn't reach the hive just now — give me a moment and t
 
 export async function onRequest({ request, env }) {
   if (request.method !== "POST") return json({ error: "method not allowed" }, 405);
-  if (!env.BEE_URL || !env.BEE_SECRET)
-    return json({ reply: HIVE_DOWN, _dbg: { stage: "env", has_url: !!env.BEE_URL, has_secret: !!env.BEE_SECRET, url_host: (env.BEE_URL||"").split("/")[2]||null } });
+  if (!env.BEE_URL || !env.BEE_SECRET) return json({ reply: HIVE_DOWN });
 
   let b;
   try { b = await request.json(); } catch { return json({ error: "bad request" }, 400); }
@@ -30,8 +29,8 @@ export async function onRequest({ request, env }) {
     });
     const d = await r.json().catch(() => ({}));
     const reply = d.reply || d.text || d.message || d.response;
-    return json({ reply: reply || HIVE_DOWN, _dbg: { stage: "fetch", upstream: r.status, url_host: (env.BEE_URL||"").split("/")[2]||null, keys: Object.keys(d) } });
-  } catch (e) {
-    return json({ reply: HIVE_DOWN, _dbg: { stage: "catch", err: String(e), url_host: (env.BEE_URL||"").split("/")[2]||null } });
+    return json({ reply: reply || HIVE_DOWN });
+  } catch (_) {
+    return json({ reply: HIVE_DOWN });
   }
 }
