@@ -58,9 +58,13 @@
   a:focus-visible,button:focus-visible{outline:3px solid rgba(242,180,65,.55);outline-offset:2px;border-radius:8px;}
   .ld-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
   .ld-mobile-cta{display:none;}
+  .ld-short-h{display:block;}
+  .ld-short-v{display:none;}
   @media (max-width:860px){
     .ld-video-grid{grid-template-columns:1fr !important;}
     .ld-founder{grid-template-columns:1fr !important;gap:30px !important;}
+    .ld-short-h{display:none;}
+    .ld-short-v{display:block;}
   }
   .ld-board-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
   .ld-nav{display:flex;align-items:center;gap:23px;font-size:14.5px;font-weight:500;}
@@ -391,7 +395,8 @@
   <div class="sec-pad" style="max-width:1080px;margin:0 auto;padding:88px 24px;">
     <div class="ld-founder" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
       <figure style="margin:0;">
-        <iframe src="/media/why-i-built-this/" title="Why I built this — Donovan&rsquo;s story" loading="lazy" allow="fullscreen" style="width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid #e6dcc8;background:#0c0a07;box-shadow:0 30px 60px -44px rgba(43,33,24,.55);display:block;"></iframe>
+        <iframe class="ld-short-h" src="/media/why-i-built-this/" title="Why I built this — Donovan&rsquo;s story" loading="lazy" allow="fullscreen" style="width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid #e6dcc8;background:#0c0a07;box-shadow:0 30px 60px -44px rgba(43,33,24,.55);"></iframe>
+        <iframe class="ld-short-v" src="/media/why-i-built-this-vertical/" title="Why I built this — Donovan&rsquo;s story" loading="lazy" allow="fullscreen" style="width:100%;max-width:340px;margin:0 auto;aspect-ratio:9/16;border-radius:20px;border:1px solid #e6dcc8;background:#0c0a07;box-shadow:0 30px 60px -44px rgba(43,33,24,.55);"></iframe>
         <figcaption class="mono" style="font-size:12px;letter-spacing:.04em;color:#9b8d7b;margin-top:12px;text-align:center;">Why I built this &middot; 60 seconds, in my own words &middot; <a href="https://www.youtube.com/@LocalDiabeticwin" style="color:#D99A2B;text-decoration:none;">also on YouTube</a></figcaption>
       </figure>
       <div>
