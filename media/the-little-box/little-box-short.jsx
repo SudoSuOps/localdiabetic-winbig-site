@@ -1,5 +1,6 @@
-// little-box-short.jsx — LocalDiabetic "The little box" short (16:9, ~44s).
-// Same motion system + palette as the founder short.
+// little-box-short.jsx — LocalDiabetic "The little box" short (16:9, ~58s).
+// Walks the /box page: little box → 6 boxes → Grace Blackwell power tier →
+// edge devices (phone + watch) → privacy → stats → LocalDiabetic / Win big. lockup.
 const { Stage, Sprite, useTime, useSprite, clamp } = window;
 
 /* ---------- palette ---------- */
@@ -19,8 +20,10 @@ const lerpC = (a,b,t) => { const A=hx(a),B=hx(b); return `rgb(${Math.round(A[0]+
 
 const STOPS = [
   [0,DARK],[4.4,DARK],[5.1,CREAM],
-  [27.4,CREAM],[28.2,DARK],
-  [38.8,DARK],[39.6,CREAM],[44,CREAM]
+  [27.6,CREAM],[28.2,DARK],
+  [33.6,DARK],[34.2,CREAM],
+  [39.8,CREAM],[40.4,DARK],
+  [50.4,DARK],[51.0,CREAM],[58,CREAM]
 ];
 function Backdrop(){
   const t = useTime();
@@ -94,23 +97,16 @@ function LittleBox({reveal=1}){
   const r = ease(clamp(reveal,0,1));
   return (
     <svg width="340" height="250" viewBox="0 0 340 250" fill="none" style={{display:'block',overflow:'visible',opacity:r,transform:`scale(${0.9+r*0.1})`,transformOrigin:'center'}}>
-      {/* glow */}
       <ellipse cx="170" cy="150" rx="150" ry="42" fill="rgba(242,180,65,0.16)"/>
-      {/* top face */}
       <path d="M70 96 L170 64 L290 96 L190 130 Z" fill="#FCE4B0" stroke={INK} strokeWidth="3.4" strokeLinejoin="round"/>
-      {/* front face */}
       <path d="M70 96 L190 130 L190 198 L70 168 Z" fill={HONEY} stroke={INK} strokeWidth="3.4" strokeLinejoin="round"/>
-      {/* side face */}
       <path d="M190 130 L290 96 L290 160 L190 198 Z" fill="#E0A93B" stroke={INK} strokeWidth="3.4" strokeLinejoin="round"/>
-      {/* front detail: vent lines */}
       <g stroke="rgba(43,33,24,0.5)" strokeWidth="2.4">
         <line x1="84" y1="120" x2="150" y2="137"/>
         <line x1="84" y1="132" x2="150" y2="149"/>
         <line x1="84" y1="144" x2="150" y2="161"/>
       </g>
-      {/* power LED (honey-white) */}
       <circle cx="170" cy="176" r="6" fill="#FFF6E0" stroke={INK} strokeWidth="2.4"/>
-      {/* local-node activity dot (green pulse) */}
       <circle cx="262" cy="120" r={7+pulse*3} fill={GREEN} opacity={0.25+pulse*0.25}/>
       <circle cx="262" cy="120" r="5" fill={GREEN} stroke={INK} strokeWidth="2"/>
     </svg>
@@ -146,20 +142,126 @@ function BoxLabels(){
 /* ---------- device chips ---------- */
 function Devices({top}){
   const {localTime}=useSprite();
-  const items=['Jetson Orin Nano','Mac mini','ZimaBoard 2','Synology NAS','ZimaCube 2'];
+  const items=['Jetson Orin Nano','Jetson AGX Orin','Mac mini','ZimaBoard 2','Synology NAS','ZimaCube 2'];
   return (
-    <div style={{position:'absolute',left:'50%',top,transform:'translateX(-50%)',width:1300,maxWidth:'90%',
+    <div style={{position:'absolute',left:'50%',top,transform:'translateX(-50%)',width:1340,maxWidth:'92%',
       display:'flex',gap:16,justifyContent:'center',flexWrap:'wrap'}}>
       {items.map((it,i)=>{
-        const t0=0.3+i*0.26;
+        const t0=0.3+i*0.22;
         const p=ease(clamp((localTime-t0)/0.5,0,1));
         return (
-          <span key={i} style={{fontFamily:SANS,fontSize:36,fontWeight:700,color:INK,
-            background:'#fff',border:'1.5px solid #E6D9BF',borderRadius:999,padding:'15px 32px',
+          <span key={i} style={{fontFamily:SANS,fontSize:34,fontWeight:700,color:INK,
+            background:'#fff',border:'1.5px solid #E6D9BF',borderRadius:999,padding:'15px 30px',
             boxShadow:'0 16px 32px -26px rgba(43,33,24,.5)',
             opacity:p,transform:`translateY(${(1-p)*20}px) scale(${0.93+p*0.07})`}}>{it}</span>
         );
       })}
+    </div>
+  );
+}
+
+/* ---------- Grace Blackwell power box (gold mesh) ---------- */
+function PowerBox(){
+  const {localTime}=useSprite();
+  const r=ease(clamp(localTime/0.7,0,1));
+  const pulse=0.5+0.5*Math.sin(localTime*2.6);
+  return (
+    <svg width="440" height="240" viewBox="0 0 440 240" fill="none" style={{display:'block',overflow:'visible',opacity:r,transform:`scale(${0.92+r*0.08})`,transformOrigin:'center'}}>
+      <defs>
+        <linearGradient id="pbgold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#F6E0A0"/><stop offset="0.5" stopColor="#E2B85E"/><stop offset="1" stopColor="#C2963C"/>
+        </linearGradient>
+        <pattern id="pbmesh" width="11" height="11" patternUnits="userSpaceOnUse">
+          <circle cx="5.5" cy="5.5" r="1.8" fill="#9c7426" opacity="0.5"/>
+        </pattern>
+      </defs>
+      <ellipse cx="220" cy="180" rx="185" ry="40" fill="rgba(242,180,65,0.20)"/>
+      <path d="M96 96 L220 70 L344 96 L220 122 Z" fill="#F2D58A" stroke="#8a6a28" strokeWidth="3" strokeLinejoin="round"/>
+      <path d="M96 96 L220 122 L220 188 L96 162 Z" fill="url(#pbgold)" stroke="#8a6a28" strokeWidth="3" strokeLinejoin="round"/>
+      <path d="M96 96 L220 122 L220 188 L96 162 Z" fill="url(#pbmesh)"/>
+      <path d="M220 122 L344 96 L344 150 L220 188 Z" fill="#C99A3E" stroke="#8a6a28" strokeWidth="3" strokeLinejoin="round"/>
+      <path d="M220 122 L344 96 L344 150 L220 188 Z" fill="url(#pbmesh)"/>
+      <circle cx="312" cy="120" r={9+pulse*4} fill={GREEN} opacity={0.25+pulse*0.25}/>
+      <circle cx="312" cy="120" r="6" fill={GREEN} stroke="#8a6a28" strokeWidth="2"/>
+    </svg>
+  );
+}
+function PowerChips({top}){
+  const {localTime}=useSprite();
+  const items=[['NVIDIA DGX Spark','1 PFLOP · 128GB'],['ASUS Ascent GX10','1000 TOPS · 1TB']];
+  return (
+    <div style={{position:'absolute',left:'50%',top,transform:'translateX(-50%)',display:'flex',gap:28}}>
+      {items.map((it,i)=>{
+        const p=ease(clamp((localTime-(0.9+i*0.35))/0.5,0,1));
+        return <div key={i} style={{opacity:p,transform:`translateY(${(1-p)*18}px)`,textAlign:'center',
+          background:'rgba(242,180,65,0.08)',border:'1px solid rgba(242,180,65,0.3)',borderRadius:18,padding:'18px 36px'}}>
+          <div style={{fontFamily:SANS,fontSize:34,fontWeight:800,color:CTXT}}>{it[0]}</div>
+          <div style={{fontFamily:MONO,fontSize:22,color:HONEY,marginTop:6,letterSpacing:'.04em'}}>{it[1]}</div>
+        </div>;
+      })}
+    </div>
+  );
+}
+
+/* ---------- edge devices (phone + watch) ---------- */
+function PhoneSVG({w=210}){
+  return (
+    <svg width={w} height={w*150/86} viewBox="0 0 86 150" fill="none" style={{display:'block',filter:'drop-shadow(0 30px 40px rgba(43,33,24,.22))'}}>
+      <defs><linearGradient id="shiporange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#E07B38"/><stop offset="1" stopColor="#BD5F26"/></linearGradient></defs>
+      <rect x="6" y="4" width="74" height="142" rx="17" fill="url(#shiporange)"/>
+      <rect x="10" y="8" width="66" height="134" rx="13" fill="#0B0F14"/>
+      <rect x="13" y="11" width="60" height="128" rx="10" fill="#FBF7EF"/>
+      <rect x="31" y="15" width="24" height="7" rx="3.5" fill="#0B0F14"/>
+      <rect x="18" y="30" width="50" height="28" rx="7" fill="#FBF0D8" stroke="#F0DCA8" strokeWidth="1.4"/>
+      <circle cx="28" cy="41" r="4.6" fill="#F2B441"/>
+      <rect x="37" y="37" width="25" height="4" rx="2" fill="#caa86a"/>
+      <rect x="37" y="45" width="18" height="3.2" rx="1.6" fill="#ddc79a"/>
+      <rect x="18" y="64" width="50" height="20" rx="6" fill="#f1f6f2" stroke="#cfe6d8" strokeWidth="1.2"/>
+      <circle cx="28" cy="74" r="4" fill="#2FB67A"/>
+      <rect x="37" y="71" width="24" height="3.4" rx="1.7" fill="#9ec9b1"/>
+      <rect x="37" y="78" width="15" height="3" rx="1.5" fill="#bcdac9"/>
+      <rect x="18" y="90" width="50" height="20" rx="6" fill="#f7f1e6" stroke="#ece0c8" strokeWidth="1.2"/>
+      <circle cx="28" cy="100" r="4" fill="#D99A2B"/>
+      <rect x="37" y="97" width="22" height="3.4" rx="1.7" fill="#cdb78e"/>
+      <rect x="37" y="104" width="14" height="3" rx="1.5" fill="#ddcaa0"/>
+    </svg>
+  );
+}
+function WatchSVG({w=250}){
+  return (
+    <svg width={w} height={w*150/100} viewBox="0 0 100 150" fill="none" style={{display:'block',filter:'drop-shadow(0 30px 40px rgba(43,33,24,.22))'}}>
+      <defs><linearGradient id="shrosecase" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#EAC4B2"/><stop offset="1" stopColor="#D4A48E"/></linearGradient></defs>
+      <path d="M35 8 L65 8 L62 36 L38 36 Z" fill="#EFEAE4" stroke="#d8cfc4" strokeWidth="1.2"/>
+      <path d="M38 114 L62 114 L65 142 L35 142 Z" fill="#EFEAE4" stroke="#d8cfc4" strokeWidth="1.2"/>
+      <rect x="22" y="30" width="56" height="90" rx="21" fill="url(#shrosecase)" stroke="#b98e78" strokeWidth="2"/>
+      <rect x="28" y="36" width="44" height="78" rx="16" fill="#0B0F14"/>
+      <rect x="34" y="46" width="32" height="19" rx="6" fill="#16140f"/>
+      <circle cx="43" cy="55.5" r="4.6" fill="#F2B441"/>
+      <rect x="51" y="51" width="12" height="3.4" rx="1.7" fill="#caa86a"/>
+      <rect x="51" y="58" width="9" height="3" rx="1.5" fill="#7a6a48"/>
+      <rect x="34" y="70" width="32" height="30" rx="7" fill="#16140f"/>
+      <circle cx="50" cy="82" r="8.5" fill="none" stroke="#2FB67A" strokeWidth="2.3"/>
+      <path d="M46 82 l3 3 l5 -6" fill="none" stroke="#2FB67A" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
+      <rect x="40" y="93" width="20" height="3.2" rx="1.6" fill="#5b6b78"/>
+      <rect x="78" y="56" width="6" height="14" rx="3" fill="#D4A48E" stroke="#b98e78" strokeWidth="1.2"/>
+      <rect x="79" y="74" width="4" height="16" rx="2" fill="#cf9f89"/>
+    </svg>
+  );
+}
+function EdgeDevices(){
+  const {localTime}=useSprite();
+  const pP=ease(clamp((localTime-0.2)/0.6,0,1));
+  const pW=ease(clamp((localTime-0.55)/0.6,0,1));
+  return (
+    <div style={{position:'absolute',left:'50%',top:'56%',transform:'translate(-50%,-50%)',display:'flex',gap:110,alignItems:'center'}}>
+      <div style={{textAlign:'center',opacity:pP,transform:`translateY(${(1-pP)*26}px)`}}>
+        <PhoneSVG/>
+        <div style={{fontFamily:SANS,fontSize:30,fontWeight:700,color:INK,marginTop:22}}>iPhone</div>
+      </div>
+      <div style={{textAlign:'center',opacity:pW,transform:`translateY(${(1-pW)*26}px)`}}>
+        <WatchSVG/>
+        <div style={{fontFamily:SANS,fontSize:30,fontWeight:700,color:INK,marginTop:22}}>Apple Watch</div>
+      </div>
     </div>
   );
 }
@@ -169,7 +271,7 @@ function Stats(){
   const {localTime}=useSprite();
   const items=[['$0','per month, forever'],['100%','stays in your home'],['24/7','awake, even offline']];
   return (
-    <div style={{position:'absolute',left:'50%',top:430,transform:'translateX(-50%)',width:1300,
+    <div style={{position:'absolute',left:'50%',top:440,transform:'translateX(-50%)',width:1300,
       display:'flex',gap:30,justifyContent:'center'}}>
       {items.map((it,i)=>{
         const t0=0.3+i*0.4;
@@ -186,12 +288,34 @@ function Stats(){
   );
 }
 
+/* ---------- finale logo lockup ---------- */
+function FinaleLogo(){
+  const {localTime}=useSprite();
+  const pW=ease(clamp((localTime-0.55)/0.6,0,1));
+  const pT=ease(clamp((localTime-1.0)/0.6,0,1));
+  const pS=ease(clamp((localTime-1.5)/0.6,0,1));
+  return (
+    <div style={{position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)',textAlign:'center',fontFamily:SANS,width:1400}}>
+      <BeeMark size={150}/>
+      <div style={{opacity:pW,transform:`translateY(${(1-pW)*16}px)`,fontSize:100,fontWeight:900,letterSpacing:'-3px',lineHeight:1,marginTop:8}}>
+        <span style={{color:INK}}>Local</span><span style={{color:DEEP}}>Diabetic</span>
+      </div>
+      <div style={{opacity:pT,transform:`translateY(${(1-pT)*16}px)`,marginTop:14,fontSize:124,fontWeight:900,letterSpacing:'-3.5px',lineHeight:1}}>
+        <span style={{color:INK}}>Win</span> <span style={{color:HONEY}}>big.</span>
+      </div>
+      <div style={{opacity:pS,fontFamily:MONO,fontSize:25,fontWeight:600,letterSpacing:'.2em',textTransform:'uppercase',color:MUT,marginTop:28}}>
+        Every day &middot; not someday &middot; 🐝
+      </div>
+    </div>
+  );
+}
+
 /* ============================ THE SHORT ============================ */
 function LittleBoxShort(){
   const big  = {fontWeight:800,fontSize:84,letterSpacing:'-2.4px',color:INK,lineHeight:1.06};
   const bigD = {...big,color:CTXT};
   return (
-    <Stage width={1920} height={1080} duration={44} background={CREAM} fps={30} persistKey="ldbox">
+    <Stage width={1920} height={1080} duration={58} background={CREAM} fps={30} persistKey="ldbox">
       <Backdrop/>
 
       {/* S1 — cold open */}
@@ -241,44 +365,54 @@ function LittleBoxShort(){
 
       {/* S5 — devices */}
       <Sprite start={21.6} end={27.6}>
-        <Cap top={300}>
+        <Cap top={280}>
           <Kicker text="Pick your box" color={DEEP}/>
           <div style={{...big,fontSize:72,marginTop:24}}>Start anywhere.</div>
         </Cap>
-        <Devices top={560}/>
+        <Devices top={520}/>
+      </Sprite>
+
+      {/* S5b — Grace Blackwell power tier, on dark */}
+      <Sprite start={28.2} end={34.0}>
+        <Cap top={120}><Kicker text="Powered by NVIDIA Grace Blackwell" color={HONEY}/></Cap>
+        <Cap top={188}><div style={{...bigD,fontSize:66}}>Or the whole hive, <span style={{color:HONEY}}>on your desk.</span></div></Cap>
+        <div style={{position:'absolute',left:'50%',top:'56%',transform:'translate(-50%,-50%)'}}><PowerBox/></div>
+        <PowerChips top={830}/>
+      </Sprite>
+
+      {/* S5c — edge devices, on cream */}
+      <Sprite start={34.2} end={40.2}>
+        <Cap top={110}><Kicker text="What you carry" color={DEEP}/></Cap>
+        <Cap top={176}><div style={{...big,fontSize:62}}>The box stays home. The nudges find <span style={{color:DEEP}}>you</span>.</div></Cap>
+        <EdgeDevices/>
       </Sprite>
 
       {/* S6 — privacy, on dark */}
-      <Sprite start={28.2} end={34.6}>
-        <Cap top={360}>
+      <Sprite start={40.4} end={46.4}>
+        <Cap top={340}>
           <Kicker text="Privacy first" color={GREEN}/>
-          <div style={{...bigD,fontSize:96,marginTop:30,lineHeight:1.1}}>No cloud.<br/>No subscription.<br/><span style={{color:HONEY}}>No data-mining.</span></div>
+          <div style={{...bigD,fontSize:92,marginTop:30,lineHeight:1.1}}>No cloud.<br/>No subscription.<br/><span style={{color:HONEY}}>No data-mining.</span></div>
         </Cap>
       </Sprite>
 
       {/* S7 — stats, on dark */}
-      <Sprite start={34.6} end={39.0}>
-        <Cap top={250}><Kicker text="What the box represents" color={GREEN}/></Cap>
+      <Sprite start={46.4} end={50.8}>
+        <Cap top={260}><Kicker text="What the box represents" color={GREEN}/></Cap>
       </Sprite>
-      <Sprite start={34.9} end={39.0}>
+      <Sprite start={46.7} end={50.8}>
         <Stats/>
       </Sprite>
 
-      {/* S8 — resolution + sign-off */}
-      <Sprite start={39.6} end={44}>
-        <Cap top={360}>
+      {/* S8 — resolution */}
+      <Sprite start={51.0} end={53.4}>
+        <Cap top={430}>
           <div style={big}>Your whole diabetic life,<br/>on a box <span style={{color:DEEP}}>you own.</span></div>
         </Cap>
       </Sprite>
-      <Sprite start={40.3} end={44}>
-        <Cap top={720}>
-          <div style={{fontFamily:SANS,fontSize:60,fontWeight:900,letterSpacing:'-1.5px'}}>
-            <span style={{color:INK}}>Win</span> <span style={{color:DEEP}}>big.</span>
-          </div>
-          <div style={{fontFamily:MONO,fontSize:24,fontWeight:600,letterSpacing:'.18em',textTransform:'uppercase',color:MUT,marginTop:16}}>
-            Every day &middot; not someday &middot; 🐝
-          </div>
-        </Cap>
+
+      {/* S9 — LocalDiabetic / Win big. lockup */}
+      <Sprite start={53.4} end={58}>
+        <FinaleLogo/>
       </Sprite>
     </Stage>
   );
