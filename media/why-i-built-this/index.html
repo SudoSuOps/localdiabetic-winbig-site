@@ -19,5 +19,29 @@
   <x-import component-from-global-scope="WhyIBuiltThis" from="./animations.jsx ./why-i-built-this.jsx" hint-size="100%,100%"></x-import>
 </div>
 </x-dc>
+
+<!-- Narration (ElevenLabs · Brian) synced to the animation playhead. Browsers
+     block autoplay-with-sound, so it arms on a tap; the visual plays silently until then. -->
+<audio id="ld-vo" src="./why-i-built-this.mp3" preload="auto"></audio>
+<button id="ld-sound" type="button" aria-label="Play with sound"
+  style="position:fixed;right:14px;bottom:14px;z-index:9;display:flex;align-items:center;gap:8px;font:600 13px/1 'Inter',-apple-system,sans-serif;color:#2B2118;background:#F2B441;border:none;border-radius:999px;padding:11px 16px;box-shadow:0 8px 22px -8px rgba(0,0,0,.6);cursor:pointer;">🔊 Tap for sound</button>
+<script>
+(function(){
+  var a=document.getElementById('ld-vo'), b=document.getElementById('ld-sound'), last=-1, on=false;
+  function stageTime(){ try{ var t=parseFloat(localStorage.getItem('animstage:t')||'0'); return isFinite(t)?t:null; }catch(e){ return null; } }
+  function sync(){
+    var t=stageTime(); if(t===null) return;
+    if(Math.abs(t-last)<0.001){ if(!a.paused) a.pause(); }              /* stage paused/stalled */
+    else { if(a.paused) a.play().catch(function(){}); if(Math.abs(a.currentTime-t)>0.35) a.currentTime=t; }
+    last=t;
+  }
+  b.addEventListener('click',function(){
+    if(on) return; on=true; b.style.display='none';
+    var t=stageTime(); if(t!==null) a.currentTime=t;
+    a.play().catch(function(){});
+    setInterval(sync,300);
+  });
+})();
+</script>
 </body>
 </html>
