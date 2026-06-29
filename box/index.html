@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The little box — the compute that runs your LifeBoard · LocalDiabetic</title>
-<meta name="description" content="LocalDiabetic runs on a small box you own at home — a Jetson, a Mac mini, a ZimaBoard, a Synology NAS, or a ZimaCube. Here's exactly what each one runs, the baseline to use a device you already own, and why local-first beats the cloud: your data never leaves home.">
+<title>The Little Box — the compute that runs LocalDiabetic at home</title>
+<meta name="description" content="LocalDiabetic runs on a little box you own at home — Jetson Orin Nano, Mac mini, ZimaBoard 2, Synology NAS, or ZimaCube 2. Your records and your Bee stay local. No cloud. No subscription. No data-mining.">
 <link rel="canonical" href="https://localdiabetic.com/box">
 <meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:url" content="https://localdiabetic.com/box">
 
 <link rel="icon" href="/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon/bee.svg">
@@ -14,12 +15,13 @@
 <meta name="theme-color" content="#F2B441">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="The little box that runs your whole diabetic life">
-<meta property="og:description" content="A Jetson, a Mac mini, a ZimaBoard, a Synology NAS, or a ZimaCube — what each runs, the baseline to reuse a device you own, and why your data never leaves home.">
-<meta property="og:image" content="/localdiabetic-og.png?v=winbig">
-<meta property="og:url" content="https://localdiabetic.com/box">
+<meta property="og:title" content="The Little Box — the compute that runs LocalDiabetic at home">
+<meta property="og:description" content="One box. Your whole diabetic life. Nothing leaves home. Win big — every day, not someday.">
+<meta property="og:image" content="/localdiabetic-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="/localdiabetic-og.png?v=winbig">
+<meta name="twitter:site" content="@localdiabetics">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,35 +33,52 @@
   *{box-sizing:border-box;}
   a{color:inherit;}
   .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;}
+  @keyframes ld-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+  @keyframes ld-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
   .nav-link{text-decoration:none;color:#6b5e4f;transition:color .15s;}
   .nav-link:hover{color:#2B2118;}
+  .btn-primary{transition:background .15s,transform .15s;}
+  .btn-primary:hover{background:#e9aa31;}
+  .btn-ghost{transition:background .15s;}
+  .btn-ghost:hover{background:#FBF3E2;}
   .flink{transition:color .15s;}
   .flink:hover{color:#F2B441;}
   a:focus-visible,button:focus-visible{outline:3px solid rgba(242,180,65,.55);outline-offset:2px;border-radius:8px;}
-  .ld-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:500;}
-  .sec-pad{padding:80px 24px;}
-  .boxes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-  .bcard{background:#fff;border:1px solid #ece3d2;border-radius:18px;padding:24px;transition:transform .24s cubic-bezier(.2,.7,.2,1),box-shadow .24s,border-color .15s;}
-  .bcard:hover{transform:translateY(-4px);box-shadow:0 24px 46px -30px rgba(43,33,24,.5);border-color:#F0DCA8;}
-  .spec{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:7px 0;border-top:1px solid #f0e8d8;}
-  .spec span:first-child{color:#9b8d7b;}
-  .spec span:last-child{font-weight:600;color:#2B2118;text-align:right;}
-  .tier{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;}
-  @media (max-width:760px){.boxes{grid-template-columns:1fr;}.ld-nav .nav-sec{display:none;}.sec-pad{padding:56px 20px;}}
-  @media (prefers-reduced-motion:reduce){*{animation:none !important;scroll-behavior:auto !important;}}
+  .ld-nav{display:flex;align-items:center;gap:23px;font-size:14.5px;font-weight:500;}
+  .box-card{transition:transform .18s,box-shadow .18s;}
+  .box-card:hover{transform:translateY(-4px);box-shadow:0 2px 6px rgba(43,33,24,.05),0 40px 80px -48px rgba(43,33,24,.5);}
+  .grid-devices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .grid-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .grid-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .ld-mobile-cta{display:none;}
+  @media (max-width:980px){ .grid-devices{grid-template-columns:repeat(2,1fr);} .grid-pillars{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:720px){
+    .ld-nav{gap:15px;font-size:14px;}
+    .ld-nav .nav-sec{display:none;}
+    .grid-devices{grid-template-columns:1fr;}
+    .grid-stats{grid-template-columns:1fr;}
+    .cmp{grid-template-columns:1fr;}
+    .sec-pad{padding:56px 20px !important;}
+    .hero-pad{padding:56px 20px 40px !important;}
+    body{padding-bottom:76px;}
+    .ld-mobile-cta{display:block;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{animation:none !important;scroll-behavior:auto !important;} }
 </style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"ItemList",
-  "name":"Compute that runs the LocalDiabetic LifeBoard",
-  "description":"Small, low-power computers a person can own at home to run the LocalDiabetic LifeBoard and the on-box Bee AI — privately, with no cloud dependency.",
+  "name":"Compute that runs the LocalDiabetic LifeBoard at home",
+  "description":"Small, low-power computers a person can own to run the LocalDiabetic LifeBoard and the on-box Bee AI privately, with no cloud dependency.",
   "itemListElement":[
-    {"@type":"ListItem","position":1,"name":"NVIDIA Jetson Orin Nano","description":"~$249 palm-sized edge AI board (8GB, ~67 TOPS). Runs the DiabeticDaily-4B brain on-device."},
-    {"@type":"ListItem","position":2,"name":"ZimaBoard 2","description":"~$200 silent always-on x86 home-server board. Runs the LifeBoard plus the 4B brain and stores records locally."},
-    {"@type":"ListItem","position":3,"name":"Synology NAS","description":"~$300+ home network storage — the vault where your records, photos, and documents live, backed up and RAID-protected at home."},
-    {"@type":"ListItem","position":4,"name":"Apple Mac mini (M4)","description":"~$599 silent all-in-one. Apple Silicon runs the DiabeticDaily-9B brain comfortably and the 27B quantized."},
-    {"@type":"ListItem","position":5,"name":"ZimaCube 2","description":"~$700+ multi-bay home server with room for a GPU. Holds years of records and runs the largest DiabeticDaily-27B brain."}
+    {"@type":"ListItem","position":1,"name":"NVIDIA Jetson Orin Nano","description":"~$249 palm-sized edge AI board (8GB). Runs the DiabeticDaily-4B brain on-device."},
+    {"@type":"ListItem","position":2,"name":"NVIDIA Jetson AGX Orin","description":"Higher-end Jetson with up to 64GB — runs the larger DiabeticDaily brains at the edge."},
+    {"@type":"ListItem","position":3,"name":"Apple Mac mini","description":"Silent all-in-one; Apple Silicon runs the DiabeticDaily-9B brain comfortably (27B quantized)."},
+    {"@type":"ListItem","position":4,"name":"ZimaBoard 2","description":"Fanless x86 home-server board — runs the LifeBoard and stores records locally."},
+    {"@type":"ListItem","position":5,"name":"Synology NAS","description":"Home network storage — the vault for records, photos, and documents, backed up at home."},
+    {"@type":"ListItem","position":6,"name":"ZimaCube 2","description":"Multi-bay home server with room for a GPU — holds years of records and runs the largest 27B brain."}
   ]
 }
 </script>
@@ -68,7 +87,7 @@
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"What hardware do I need to run LocalDiabetic?","acceptedAnswer":{"@type":"Answer","text":"A small computer you own at home with about 8 GB of RAM, ~20 GB of free storage, and a modern NPU/GPU or Apple Silicon (the smallest DiabeticDaily-4B brain can even run on a modern CPU). Good options range from a ~$249 NVIDIA Jetson Orin Nano up to a ZimaCube home server."}},
+    {"@type":"Question","name":"What hardware do I need to run LocalDiabetic?","acceptedAnswer":{"@type":"Answer","text":"A small computer you own at home with about 8 GB of RAM, ~20 GB free storage, and a modern NPU/GPU or Apple Silicon (the smallest DiabeticDaily-4B brain can even run on a modern CPU). Options range from a ~$249 NVIDIA Jetson Orin Nano up to a ZimaCube home server."}},
     {"@type":"Question","name":"Can I use a computer I already own?","acceptedAnswer":{"@type":"Answer","text":"Yes. If a device you already have clears the baseline — about 8 GB RAM, ~20 GB free storage, always-on at home, and a modern NPU/GPU or Apple Silicon — it can run the LifeBoard and the on-box Bee. A spare mini-PC, Mac mini, or NAS often qualifies."}},
     {"@type":"Question","name":"Does LocalDiabetic work without the internet?","acceptedAnswer":{"@type":"Answer","text":"Yes. The AI and your records live on the box in your home, so the LifeBoard keeps working during an outage, a storm, or off-grid. Your private health data never leaves the box."}},
     {"@type":"Question","name":"Why local instead of the cloud?","acceptedAnswer":{"@type":"Answer","text":"Privacy is the architecture, not a promise: your health data is stored locally and never sent to a company's cloud, so there's no subscription, no data harvesting, and no cloud breach surface. You own the box, the data, and the AI."}}
@@ -110,175 +129,564 @@
   </div>
 </header>
 
-<main>
-  <!-- ===== HERO ===== -->
-  <section style="position:relative;overflow:hidden;">
-    <div style="position:absolute;top:-120px;left:50%;width:1100px;height:720px;transform:translateX(-50%);background:radial-gradient(circle,rgba(242,180,65,.18) 0%,rgba(242,180,65,.05) 42%,transparent 68%);pointer-events:none;"></div>
-    <div style="position:relative;max-width:880px;margin:0 auto;padding:84px 24px 48px;text-align:center;">
-      <div class="mono" style="display:inline-flex;align-items:center;gap:8px;background:#FBF0D8;border:1px solid #F0DCA8;border-radius:999px;padding:7px 16px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a6e15;margin-bottom:26px;">🐝 The little box</div>
-      <h1 style="font-weight:800;font-size:clamp(34px,5.6vw,60px);letter-spacing:-1.6px;line-height:1.06;margin:0 0 22px;text-wrap:balance;">One small box. Your whole diabetic life — <span style="color:#D99A2B;">and it never leaves home.</span></h1>
-      <p style="font-size:19px;line-height:1.6;color:#6b5e4f;max-width:60ch;margin:0 auto 14px;">LocalDiabetic doesn't run in someone else's cloud. It runs on a small, quiet computer <em>you</em> own — sitting on a shelf at home. Your records, your reminders, and a diabetic-smart AI all live on that box. Here's what runs it, what it really costs, and why owning the box is the whole point.</p>
+<!-- ===== HERO ===== -->
+<section style="position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-120px;left:50%;width:1100px;height:740px;transform:translateX(-50%);background:radial-gradient(circle,rgba(242,180,65,.18) 0%,rgba(242,180,65,.05) 42%,transparent 66%);pointer-events:none;animation:ld-pulse 7s ease-in-out infinite;"></div>
+  <div class="hero-pad" style="position:relative;max-width:960px;margin:0 auto;padding:80px 24px 56px;text-align:center;">
+    <div class="mono" style="display:inline-flex;align-items:center;gap:9px;background:rgba(47,182,122,.1);border:1px solid rgba(47,182,122,.34);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#1f8f5d;margin-bottom:26px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#2FB67A;display:inline-block;"></span>Runs at home &middot; not in the cloud
     </div>
-  </section>
+    <h1 style="font-weight:800;font-size:clamp(40px,7vw,80px);letter-spacing:-2.4px;line-height:1.02;margin:0 0 22px;text-wrap:balance;">The little <span style="color:#D99A2B;">box</span>.</h1>
+    <p style="font-size:21px;line-height:1.6;color:#6b5e4f;max-width:62ch;margin:0 auto 14px;">LocalDiabetic doesn&rsquo;t live on someone else&rsquo;s servers. It lives on a small computer that sits in your home &mdash; running the LifeBoard, holding your records, and answering as your Bee. <strong style="color:#2B2118;font-weight:700;">Your whole diabetic life, on a box you own.</strong></p>
+    <div class="mono" style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#9b8d7b;margin-top:18px;">No cloud &middot; no subscription &middot; no data-mining</div>
+  </div>
+</section>
 
-  <!-- ===== WHAT THE COMPUTE REPRESENTS ===== -->
-  <section style="background:#F3ECDD;border-top:1px solid #ece3d2;border-bottom:1px solid #ece3d2;">
-    <div class="sec-pad" style="max-width:900px;margin:0 auto;">
-      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">What this compute represents</div>
-      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 20px;">It's not a gadget. It's <span style="color:#D99A2B;">ownership.</span></h2>
-      <p style="font-size:17.5px;line-height:1.7;color:#4a4034;margin:0 0 16px;">A cloud health app charges you every month <strong>and</strong> keeps your data. The little box is the opposite: you pay once for hardware you own, and your records plus the AI live <em>on it, in your house</em>. The only thing that ever leaves is a non-private receipt — never your health data.</p>
-      <p style="font-size:17.5px;line-height:1.7;color:#4a4034;margin:0;">That one-time box buys something a subscription never can: <strong>a diabetic-smart brain that answers without sending your life to a stranger's server</strong> — and keeps working when the internet doesn't.</p>
+<!-- ===== THE LITTLE BOX SHORT (motion + narration) ===== -->
+<section style="max-width:1000px;margin:0 auto;padding:0 24px 8px;">
+  <figure style="margin:0;">
+    <iframe src="/media/the-little-box/" title="The little box — a 45-second look at the compute behind LocalDiabetic" loading="lazy" allow="fullscreen" style="width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid #e6dcc8;background:#0c0a07;box-shadow:0 30px 60px -44px rgba(43,33,24,.55);"></iframe>
+    <figcaption class="mono" style="font-size:12px;letter-spacing:.04em;color:#9b8d7b;margin-top:12px;text-align:center;">The little box &middot; ~45 seconds &middot; tap for sound</figcaption>
+  </figure>
+</section>
+
+<!-- ===== WHAT THE BOX DOES ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:8px 24px 64px;">
+  <div style="background:#0B0F14;border-radius:26px;padding:44px 40px;color:#E8EEF5;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-90px;right:-60px;width:420px;height:420px;background:radial-gradient(circle,rgba(242,180,65,.16) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:relative;display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+      <svg width="30" height="33" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee-dark"></use></svg>
+      <span class="mono" style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F2B441;">What the box actually does</span>
     </div>
-  </section>
+    <h2 style="position:relative;font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-1px;line-height:1.12;margin:0 0 28px;max-width:20ch;">One small machine carries four jobs.</h2>
+    <div class="grid-pillars" style="position:relative;">
+      <div style="background:rgba(255,255,255,.04);border:1px solid #1F2A36;border-radius:18px;padding:22px;">
+        <div style="font-size:30px;line-height:1;margin-bottom:14px;">🗂️</div>
+        <div style="font-weight:800;font-size:17px;margin-bottom:6px;">Holds your records</div>
+        <p style="font-size:14.5px;color:#9aa7b3;margin:0;line-height:1.55;">Foot photos, meds, glucose, labs, letters &mdash; stored on the box&rsquo;s own drive, never uploaded.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid #1F2A36;border-radius:18px;padding:22px;">
+        <div style="font-size:30px;line-height:1;margin-bottom:14px;">🩺</div>
+        <div style="font-weight:800;font-size:17px;margin-bottom:6px;">Runs the LifeBoard</div>
+        <p style="font-size:14.5px;color:#9aa7b3;margin:0;line-height:1.55;">The daily board, reminders, and check flows run as local services &mdash; awake 24/7, even with the internet down.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid #1F2A36;border-radius:18px;padding:22px;">
+        <div style="font-size:30px;line-height:1;margin-bottom:14px;">🐝</div>
+        <div style="font-weight:800;font-size:17px;margin-bottom:6px;">Answers as your Bee</div>
+        <p style="font-size:14.5px;color:#9aa7b3;margin:0;line-height:1.55;">On an AI-class box, the diabetic model runs <em>on the box itself</em> &mdash; your questions never leave the house.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid #1F2A36;border-radius:18px;padding:22px;">
+        <div style="font-size:30px;line-height:1;margin-bottom:14px;">🔒</div>
+        <div style="font-weight:800;font-size:17px;margin-bottom:6px;">Keeps it home</div>
+        <p style="font-size:14.5px;color:#9aa7b3;margin:0;line-height:1.55;">You decide what ever leaves &mdash; a printout, a packet, a file. Nothing syncs to a cloud you don&rsquo;t control.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- ===== DEVICES ===== -->
-  <section class="sec-pad" style="max-width:1080px;margin:0 auto;">
-    <div style="text-align:center;max-width:680px;margin:0 auto 40px;">
-      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">Boxes that run it</div>
-      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 14px;">From a $249 board to a home server</h2>
-      <p style="font-size:17px;line-height:1.65;color:#6b5e4f;margin:0;">The brain comes in sizes — <span class="mono" style="font-size:14.5px;color:#2B2118;">DiabeticDaily‑4B / 9B / 27B</span> — so the box can be tiny or roomy. Pick by budget and how much headroom you want. Prices are approximate.</p>
+<!-- ===== ALREADY HAVE A BOX ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:8px 24px 18px;">
+  <div style="background:#FBF0D8;border:1px solid #F0DCA8;border-radius:24px;padding:34px 34px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;">
+    <div style="flex:1;min-width:280px;">
+      <div class="mono" style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#a8741a;margin-bottom:10px;">Already own a mini-PC or NAS?</div>
+      <h2 style="font-weight:800;font-size:clamp(24px,3.4vw,34px);letter-spacing:-0.8px;line-height:1.12;margin:0 0 10px;">Great &mdash; you may already have the box.</h2>
+      <p style="font-size:16.5px;color:#6b5e4f;margin:0;line-height:1.6;max-width:54ch;">If it&rsquo;s a small always-on computer with a little room to spare, LocalDiabetic likely runs on it today. Here&rsquo;s the baseline it needs &mdash; the board and your records ask very little.</p>
+    </div>
+    <div style="flex:1;min-width:280px;background:#fff;border:1px solid #ece3d2;border-radius:18px;padding:6px 4px;">
+      <div class="mono" style="font-size:13.5px;color:#2B2118;">
+        <div style="display:flex;justify-content:space-between;gap:14px;padding:13px 18px;border-bottom:1px solid #f1e8d6;"><span style="color:#8a7a66;">CPU</span><span style="font-weight:600;">4 cores &middot; x86 or ARM</span></div>
+        <div style="display:flex;justify-content:space-between;gap:14px;padding:13px 18px;border-bottom:1px solid #f1e8d6;"><span style="color:#8a7a66;">Memory</span><span style="font-weight:600;">8&nbsp;GB <span style="color:#9b8d7b;">(16&nbsp;GB rec.)</span></span></div>
+        <div style="display:flex;justify-content:space-between;gap:14px;padding:13px 18px;border-bottom:1px solid #f1e8d6;"><span style="color:#8a7a66;">Storage</span><span style="font-weight:600;">128&nbsp;GB <span style="color:#9b8d7b;">(1&nbsp;TB+ for photos)</span></span></div>
+        <div style="display:flex;justify-content:space-between;gap:14px;padding:13px 18px;border-bottom:1px solid #f1e8d6;"><span style="color:#8a7a66;">For the Bee</span><span style="font-weight:600;color:#1f8f5d;">any GPU / NPU helps</span></div>
+        <div style="display:flex;justify-content:space-between;gap:14px;padding:13px 18px;"><span style="color:#8a7a66;">Network</span><span style="font-weight:600;">setup only &middot; runs offline</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEVICE LINEUP ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:48px 24px 24px;">
+  <div style="text-align:center;max-width:660px;margin:0 auto 36px;">
+    <div class="mono" style="font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">Pick your box</div>
+    <h2 style="font-weight:800;font-size:clamp(28px,4.2vw,44px);letter-spacing:-1px;line-height:1.1;margin:0 0 14px;">Six boxes that run it well</h2>
+    <p style="font-size:17px;line-height:1.62;color:#6b5e4f;margin:0;">From a pocket-sized AI engine to a six-bay vault. Start anywhere &mdash; the board runs on all of them; the bigger boxes also host the full Bee at home.</p>
+  </div>
+
+  <div class="grid-devices">
+
+    <!-- Jetson Orin Nano -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:22px;display:flex;flex-direction:column;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(47,182,122,.12);color:#1f8f5d;border:1px solid rgba(47,182,122,.34);border-radius:999px;padding:5px 11px;">AI engine</span>
+        <span class="mono" style="font-size:11px;color:#9b8d7b;">from ~$249</span>
+      </div>
+      <div style="background:#fff;border:1px solid #efe6d4;border-radius:16px;padding:12px;margin:10px 0 16px;display:flex;justify-content:center;">
+        <svg width="200" height="128" viewBox="0 0 200 128" fill="none" aria-label="NVIDIA Jetson Orin Nano">
+          <rect x="26" y="74" width="148" height="40" rx="6" fill="#FCE4B0" stroke="#2B2118" stroke-width="2.4"/>
+          <circle cx="36" cy="84" r="2.4" fill="#2B2118"/><circle cx="164" cy="84" r="2.4" fill="#2B2118"/><circle cx="36" cy="104" r="2.4" fill="#2B2118"/><circle cx="164" cy="104" r="2.4" fill="#2B2118"/>
+          <rect x="58" y="20" width="84" height="60" rx="5" fill="#2B2118"/>
+          <g stroke="#5b5346" stroke-width="2.2">
+            <line x1="66" y1="26" x2="66" y2="74"/><line x1="74" y1="26" x2="74" y2="74"/><line x1="82" y1="26" x2="82" y2="74"/><line x1="90" y1="26" x2="90" y2="74"/><line x1="110" y1="26" x2="110" y2="74"/><line x1="118" y1="26" x2="118" y2="74"/><line x1="126" y1="26" x2="126" y2="74"/><line x1="134" y1="26" x2="134" y2="74"/>
+          </g>
+          <circle cx="100" cy="50" r="15" fill="#1a1410" stroke="#2FB67A" stroke-width="2.4"/>
+          <path d="M100 50 m-8 0 a8 8 0 0 1 14 -5" stroke="#2FB67A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M100 50 m8 0 a8 8 0 0 1 -14 5" stroke="#2FB67A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <circle cx="100" cy="50" r="2.4" fill="#2FB67A"/>
+          <rect x="150" y="40" width="14" height="10" rx="2" fill="#F2B441" stroke="#2B2118" stroke-width="2"/>
+          <rect x="36" y="40" width="14" height="10" rx="2" fill="#F2B441" stroke="#2B2118" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 3px;">Jetson Orin Nano</h3>
+      <div style="font-size:14px;color:#a8741a;font-weight:600;margin-bottom:12px;">The dedicated AI engine</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 14px;">Pocket-sized NVIDIA module built to run AI on-device. The natural home for the Bee &mdash; quantized and local.</p>
+      <div class="mono" style="font-size:12.5px;color:#5b5346;line-height:2;border-top:1px solid #ece3d2;padding-top:12px;margin-top:auto;">
+        <div>↳ up to <strong style="color:#2B2118;">67 TOPS</strong> AI compute</div>
+        <div>↳ 1024-core Ampere GPU</div>
+        <div>↳ 8&nbsp;GB LPDDR5 &middot; 7&ndash;25&nbsp;W</div>
+      </div>
     </div>
 
-    <div class="boxes">
+    <!-- Jetson AGX Orin -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:22px;display:flex;flex-direction:column;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(47,182,122,.12);color:#1f8f5d;border:1px solid rgba(47,182,122,.34);border-radius:999px;padding:5px 11px;">Maxed-out AI</span>
+        <span class="mono" style="font-size:11px;color:#9b8d7b;">from ~$1,999</span>
+      </div>
+      <div style="background:#fff;border:1px solid #efe6d4;border-radius:16px;padding:12px;margin:10px 0 16px;display:flex;justify-content:center;">
+        <svg width="200" height="128" viewBox="0 0 200 128" fill="none" aria-label="Jetson AGX Orin">
+          <ellipse cx="100" cy="112" rx="66" ry="7" fill="#f1e8d6"/>
+          <rect x="42" y="94" width="116" height="16" rx="4" fill="#FCE4B0" stroke="#2B2118" stroke-width="2.4"/>
+          <circle cx="52" cy="102" r="2.2" fill="#2B2118"/><circle cx="148" cy="102" r="2.2" fill="#2B2118"/>
+          <rect x="54" y="30" width="92" height="66" rx="6" fill="#cfd6de" stroke="#2B2118" stroke-width="2.6"/>
+          <g stroke="#9aa3ad" stroke-width="2.2">
+            <line x1="62" y1="36" x2="62" y2="90"/><line x1="70" y1="36" x2="70" y2="90"/><line x1="78" y1="36" x2="78" y2="90"/><line x1="122" y1="36" x2="122" y2="90"/><line x1="130" y1="36" x2="130" y2="90"/><line x1="138" y1="36" x2="138" y2="90"/>
+          </g>
+          <circle cx="100" cy="63" r="20" fill="#1a1410" stroke="#2B2118" stroke-width="2.4"/>
+          <path d="M100 63 m-13 0 a13 13 0 0 1 22 -8" stroke="#5b6470" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M100 63 m13 0 a13 13 0 0 1 -22 8" stroke="#5b6470" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <circle cx="100" cy="63" r="3" fill="#2FB67A"/>
+          <rect x="148" y="34" width="12" height="10" rx="2" fill="#F2B441" stroke="#2B2118" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 3px;">Jetson AGX Orin</h3>
+      <div style="font-size:14px;color:#a8741a;font-weight:600;margin-bottom:12px;">The big Jetson, full headroom</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 14px;">Four times the AI of the Nano in the same palm-sized class. Runs the full Bee with room to grow &mdash; the edge box for power users.</p>
+      <div class="mono" style="font-size:12.5px;color:#5b5346;line-height:2;border-top:1px solid #ece3d2;padding-top:12px;margin-top:auto;">
+        <div>↳ up to <strong style="color:#2B2118;">275 TOPS</strong> AI compute</div>
+        <div>↳ 2048-core Ampere &middot; 64 tensor cores</div>
+        <div>↳ up to 64&nbsp;GB &middot; 15&ndash;60&nbsp;W</div>
+      </div>
+    </div>
 
-      <div class="bcard">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
-          <h3 style="font-weight:800;font-size:19px;margin:0;">NVIDIA Jetson Orin Nano</h3>
-          <span class="tier" style="background:#FBF0D8;color:#9a6e15;">Edge brain</span>
+    <!-- Mac mini -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:22px;display:flex;flex-direction:column;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#FBF0D8;color:#a8741a;border:1px solid #F0DCA8;border-radius:999px;padding:5px 11px;">Might already own</span>
+        <span class="mono" style="font-size:11px;color:#9b8d7b;">from ~$599</span>
+      </div>
+      <div style="background:#fff;border:1px solid #efe6d4;border-radius:16px;padding:12px;margin:10px 0 16px;display:flex;justify-content:center;">
+        <svg width="200" height="128" viewBox="0 0 200 128" fill="none" aria-label="Mac mini">
+          <defs><linearGradient id="macsil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF0F3"/><stop offset="1" stop-color="#C6CCD3"/></linearGradient></defs>
+          <ellipse cx="100" cy="104" rx="62" ry="7" fill="#f1e8d6"/>
+          <rect x="48" y="40" width="104" height="56" rx="16" fill="url(#macsil)" stroke="#2B2118" stroke-width="2.6"/>
+          <rect x="56" y="45" width="88" height="5" rx="2.5" fill="#F8FAFB" opacity="0.85"/>
+          <path d="M64 96 q36 9 72 0" fill="none" stroke="#2B2118" stroke-width="2.2"/>
+          <g stroke="#aab2bb" stroke-width="1.3">
+            <line x1="74" y1="94" x2="74" y2="98"/><line x1="82" y1="95" x2="82" y2="99"/><line x1="90" y1="95.5" x2="90" y2="99.5"/><line x1="100" y1="96" x2="100" y2="100"/><line x1="110" y1="95.5" x2="110" y2="99.5"/><line x1="118" y1="95" x2="118" y2="99"/><line x1="126" y1="94" x2="126" y2="98"/>
+          </g>
+          <rect x="72" y="64" width="8" height="12" rx="4" fill="#828d9a" stroke="#5d6772" stroke-width="1"/>
+          <rect x="86" y="64" width="8" height="12" rx="4" fill="#828d9a" stroke="#5d6772" stroke-width="1"/>
+          <circle cx="128" cy="70" r="2.6" fill="#2FB67A"/>
+        </svg>
+      </div>
+      <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 3px;">Mac mini</h3>
+      <div style="font-size:14px;color:#a8741a;font-weight:600;margin-bottom:12px;">The one you may already have</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 14px;">Tiny, near-silent, and a genuine AI workhorse. Apple silicon runs the Bee smoothly &mdash; and it&rsquo;s a computer you already trust.</p>
+      <div class="mono" style="font-size:12.5px;color:#5b5346;line-height:2;border-top:1px solid #ece3d2;padding-top:12px;margin-top:auto;">
+        <div>↳ Apple M-series &middot; <strong style="color:#2B2118;">Neural Engine</strong></div>
+        <div>↳ 16&ndash;32&nbsp;GB unified memory</div>
+        <div>↳ silent &middot; ~5&ndash;40&nbsp;W</div>
+      </div>
+    </div>
+
+    <!-- ZimaBoard 2 -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:22px;display:flex;flex-direction:column;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#FBF0D8;color:#a8741a;border:1px solid #F0DCA8;border-radius:999px;padding:5px 11px;">Always-on host</span>
+        <span class="mono" style="font-size:11px;color:#9b8d7b;">from ~$199</span>
+      </div>
+      <div style="background:#fff;border:1px solid #efe6d4;border-radius:16px;padding:12px;margin:10px 0 16px;display:flex;justify-content:center;">
+        <svg width="200" height="128" viewBox="0 0 200 128" fill="none" aria-label="ZimaBoard 2">
+          <rect x="30" y="58" width="140" height="46" rx="6" fill="#FCE4B0" stroke="#2B2118" stroke-width="2.4"/>
+          <rect x="44" y="34" width="70" height="44" rx="5" fill="#2B2118"/>
+          <g stroke="#5b5346" stroke-width="2.2">
+            <line x1="52" y1="40" x2="52" y2="72"/><line x1="60" y1="40" x2="60" y2="72"/><line x1="68" y1="40" x2="68" y2="72"/><line x1="76" y1="40" x2="76" y2="72"/><line x1="84" y1="40" x2="84" y2="72"/><line x1="92" y1="40" x2="92" y2="72"/><line x1="100" y1="40" x2="100" y2="72"/><line x1="108" y1="40" x2="108" y2="72"/>
+          </g>
+          <rect x="150" y="40" width="18" height="13" rx="2" fill="#E8EEF5" stroke="#2B2118" stroke-width="2"/>
+          <rect x="150" y="58" width="18" height="13" rx="2" fill="#E8EEF5" stroke="#2B2118" stroke-width="2"/>
+          <rect x="126" y="44" width="12" height="9" rx="1.5" fill="#F2B441" stroke="#2B2118" stroke-width="1.8"/>
+          <rect x="126" y="60" width="12" height="9" rx="1.5" fill="#F2B441" stroke="#2B2118" stroke-width="1.8"/>
+          <circle cx="40" cy="68" r="2.4" fill="#2FB67A"/>
+          <line x1="34" y1="104" x2="34" y2="112" stroke="#2B2118" stroke-width="2.4"/><line x1="166" y1="104" x2="166" y2="112" stroke="#2B2118" stroke-width="2.4"/>
+        </svg>
+      </div>
+      <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 3px;">ZimaBoard 2</h3>
+      <div style="font-size:14px;color:#a8741a;font-weight:600;margin-bottom:12px;">The quiet always-on host</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 14px;">A fanless x86 single-board server. Sips power, never turns off &mdash; perfect for running the board, storage, and reminders around the clock.</p>
+      <div class="mono" style="font-size:12.5px;color:#5b5346;line-height:2;border-top:1px solid #ece3d2;padding-top:12px;margin-top:auto;">
+        <div>↳ Intel quad-core &middot; <strong style="color:#2B2118;">fanless</strong></div>
+        <div>↳ up to 16&nbsp;GB &middot; dual 2.5GbE</div>
+        <div>↳ PCIe + SATA &middot; ~6&ndash;12&nbsp;W</div>
+      </div>
+    </div>
+
+    <!-- Synology NAS -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:22px;display:flex;flex-direction:column;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#FBF0D8;color:#a8741a;border:1px solid #F0DCA8;border-radius:999px;padding:5px 11px;">The vault</span>
+        <span class="mono" style="font-size:11px;color:#9b8d7b;">from ~$399</span>
+      </div>
+      <div style="background:#fff;border:1px solid #efe6d4;border-radius:16px;padding:12px;margin:10px 0 16px;display:flex;justify-content:center;">
+        <svg width="200" height="128" viewBox="0 0 200 128" fill="none" aria-label="Synology NAS">
+          <rect x="66" y="20" width="68" height="92" rx="7" fill="#2B2118"/>
+          <rect x="73" y="28" width="54" height="76" rx="3" fill="#FBF7EF"/>
+          <rect x="79" y="33" width="42" height="30" rx="2" fill="#FCE4B0" stroke="#2B2118" stroke-width="1.8"/>
+          <line x1="100" y1="33" x2="100" y2="63" stroke="#2B2118" stroke-width="1.8"/>
+          <circle cx="90" cy="48" r="2" fill="#2B2118"/><circle cx="110" cy="48" r="2" fill="#2B2118"/>
+          <rect x="79" y="68" width="42" height="30" rx="2" fill="#FCE4B0" stroke="#2B2118" stroke-width="1.8"/>
+          <line x1="100" y1="68" x2="100" y2="98" stroke="#2B2118" stroke-width="1.8"/>
+          <circle cx="90" cy="83" r="2" fill="#2B2118"/><circle cx="110" cy="83" r="2" fill="#2B2118"/>
+          <circle cx="124" cy="36" r="1.8" fill="#2FB67A"/><circle cx="124" cy="43" r="1.8" fill="#F2B441"/>
+        </svg>
+      </div>
+      <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 3px;">Synology NAS</h3>
+      <div style="font-size:14px;color:#a8741a;font-weight:600;margin-bottom:12px;">The vault, with backup built in</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 14px;">Purpose-built home storage. Every foot photo, document, and record kept safe on mirrored drives &mdash; so a dead disk never loses your history.</p>
+      <div class="mono" style="font-size:12.5px;color:#5b5346;line-height:2;border-top:1px solid #ece3d2;padding-top:12px;margin-top:auto;">
+        <div>↳ 2&ndash;4 bays &middot; <strong style="color:#2B2118;">RAID backup</strong></div>
+        <div>↳ runs apps in Docker</div>
+        <div>↳ expandable &middot; ~10&ndash;30&nbsp;W</div>
+      </div>
+    </div>
+
+    <!-- ZimaCube 2 -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:22px;display:flex;flex-direction:column;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+        <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(47,182,122,.12);color:#1f8f5d;border:1px solid rgba(47,182,122,.34);border-radius:999px;padding:5px 11px;">All-in-one</span>
+        <span class="mono" style="font-size:11px;color:#9b8d7b;">from ~$699</span>
+      </div>
+      <div style="background:#fff;border:1px solid #efe6d4;border-radius:16px;padding:12px;margin:10px 0 16px;display:flex;justify-content:center;">
+        <svg width="200" height="128" viewBox="0 0 200 128" fill="none" aria-label="ZimaCube 2">
+          <rect x="58" y="18" width="84" height="96" rx="9" fill="#2B2118"/>
+          <rect x="66" y="26" width="68" height="80" rx="4" fill="#FBF7EF"/>
+          <rect x="72" y="31" width="56" height="15" rx="2.5" fill="#FCE4B0" stroke="#2B2118" stroke-width="1.6"/>
+          <rect x="72" y="49" width="56" height="15" rx="2.5" fill="#FCE4B0" stroke="#2B2118" stroke-width="1.6"/>
+          <rect x="72" y="67" width="56" height="15" rx="2.5" fill="#FCE4B0" stroke="#2B2118" stroke-width="1.6"/>
+          <rect x="72" y="85" width="56" height="15" rx="2.5" fill="#FCE4B0" stroke="#2B2118" stroke-width="1.6"/>
+          <circle cx="78" cy="38.5" r="1.8" fill="#2B2118"/><circle cx="78" cy="56.5" r="1.8" fill="#2B2118"/><circle cx="78" cy="74.5" r="1.8" fill="#2B2118"/><circle cx="78" cy="92.5" r="1.8" fill="#2B2118"/>
+          <rect x="113" y="34" width="11" height="9" rx="1.5" fill="#2FB67A" opacity=".85"/>
+          <circle cx="50" cy="22" r="2.2" fill="#2FB67A"/>
+        </svg>
+      </div>
+      <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 3px;">ZimaCube 2</h3>
+      <div style="font-size:14px;color:#a8741a;font-weight:600;margin-bottom:12px;">Vault and Bee in one chassis</div>
+      <p style="font-size:14.5px;color:#6b5e4f;line-height:1.55;margin:0 0 14px;">The whole stack in one box: six bays of storage <em>and</em> room for a real GPU &mdash; enough to host the full diabetic model at home.</p>
+      <div class="mono" style="font-size:12.5px;color:#5b5346;line-height:2;border-top:1px solid #ece3d2;padding-top:12px;margin-top:auto;">
+        <div>↳ 6 bays &middot; <strong style="color:#2B2118;">PCIe GPU slot</strong></div>
+        <div>↳ 10GbE &middot; ECC option</div>
+        <div>↳ hosts vault + full Bee</div>
+      </div>
+    </div>
+
+    <!-- Have your own / closing card -->
+    <div style="background:linear-gradient(160deg,#1A140C,#0B0F14);border-radius:22px;padding:26px;display:flex;flex-direction:column;justify-content:center;color:#E8EEF5;">
+      <svg width="34" height="37" style="display:block;overflow:visible;margin-bottom:14px;" aria-hidden="true"><use href="#bee-dark"></use></svg>
+      <h3 style="font-weight:800;font-size:21px;letter-spacing:-0.5px;margin:0 0 10px;line-height:1.15;">Not sure which box is yours?</h3>
+      <p style="font-size:14.5px;color:#9aa7b3;line-height:1.6;margin:0 0 20px;">Tell us what you already own and how you live. We&rsquo;ll point you at the smallest box that carries your whole board &mdash; no upsell.</p>
+      <a href="/join" class="btn-primary" style="text-decoration:none;text-align:center;background:#F2B441;color:#1a1205;font-weight:800;font-size:15.5px;padding:14px 18px;border-radius:12px;">Help me pick a box</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== POWER TIER (Grace Blackwell) ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:30px 24px 24px;">
+  <div style="background:linear-gradient(165deg,#15120B 0%,#0B0F14 60%);border:1px solid #2a2418;border-radius:28px;padding:46px 40px;color:#E8EEF5;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-120px;right:-80px;width:520px;height:520px;background:radial-gradient(circle,rgba(242,180,65,.22) 0%,rgba(242,180,65,.05) 45%,transparent 68%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:640px;margin-bottom:34px;">
+      <div class="mono" style="display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F2B441;margin-bottom:16px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#F2B441;display:inline-block;"></span>The power tier &middot; Powered by NVIDIA Grace Blackwell
+      </div>
+      <h2 style="font-weight:800;font-size:clamp(28px,4.2vw,44px);letter-spacing:-1.2px;line-height:1.1;margin:0 0 14px;">When you want the whole hive on your desk.</h2>
+      <p style="font-size:17px;line-height:1.62;color:#9aa7b3;margin:0;">A desk-sized AI supercomputer runs the <em>full</em> Bee &mdash; and far bigger models &mdash; at full speed, entirely at home. The same Grace Blackwell silicon that powers OpenDiabetic&rsquo;s hive, sized for your room.</p>
+    </div>
+
+    <div class="cmp" style="position:relative;">
+      <!-- DGX Spark -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid #2a2418;border-radius:22px;padding:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(242,180,65,.14);color:#F2B441;border:1px solid rgba(242,180,65,.4);border-radius:999px;padding:5px 11px;">Flagship</span>
+          <span class="mono" style="font-size:11px;color:#7d8893;">from ~$3,999</span>
         </div>
-        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">The $249 board that proves the whole thesis — a real diabetic AI in the palm of your hand.</p>
-        <div class="spec"><span>From</span><span>~$249</span></div>
-        <div class="spec"><span>Memory</span><span>8 GB</span></div>
-        <div class="spec"><span>AI compute</span><span>~67 TOPS NPU/GPU</span></div>
-        <div class="spec"><span>Power</span><span>~7–25 W</span></div>
-        <div class="spec"><span>Runs</span><span>DiabeticDaily‑4B</span></div>
+        <div style="background:#08070a;border:1px solid #221d14;border-radius:16px;padding:14px;margin:12px 0 16px;display:flex;justify-content:center;">
+          <svg width="240" height="120" viewBox="0 0 240 120" fill="none" aria-label="NVIDIA DGX Spark">
+            <defs>
+              <linearGradient id="goldA" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F4D58A"/><stop offset="0.5" stop-color="#E0B45C"/><stop offset="1" stop-color="#C79A3E"/>
+              </linearGradient>
+              <pattern id="dgxmesh" width="7" height="7" patternUnits="userSpaceOnUse">
+                <circle cx="3.5" cy="3.5" r="1.25" fill="#9c7426" opacity="0.55"/>
+              </pattern>
+            </defs>
+            <ellipse cx="120" cy="100" rx="96" ry="9" fill="rgba(242,180,65,0.12)"/>
+            <path d="M40 44 L200 44 L208 56 L208 92 L48 92 L40 80 Z" fill="#b88f38"/>
+            <rect x="40" y="34" width="160" height="58" rx="9" fill="url(#goldA)" stroke="#8a6a28" stroke-width="1.6"/>
+            <rect x="50" y="44" width="140" height="38" rx="5" fill="#d3ad55"/>
+            <rect x="50" y="44" width="140" height="38" rx="5" fill="url(#dgxmesh)"/>
+            <rect x="50" y="44" width="140" height="38" rx="5" fill="none" stroke="#8a6a28" stroke-width="1.4"/>
+            <rect x="44" y="36" width="152" height="5" rx="2.5" fill="#F6E2A8" opacity="0.8"/>
+            <circle cx="196" cy="63" r="3" fill="#2FB67A"/>
+          </svg>
+        </div>
+        <h3 style="font-weight:800;font-size:20px;letter-spacing:-0.4px;margin:0 0 3px;">NVIDIA DGX Spark</h3>
+        <div style="font-size:14px;color:#F2B441;font-weight:600;margin-bottom:12px;">A Grace Blackwell AI supercomputer on your desk</div>
+        <p style="font-size:14.5px;color:#9aa7b3;line-height:1.55;margin:0 0 14px;">A petaflop of AI in a one-litre box. Runs large models locally &mdash; the full Bee with room to spare &mdash; no cloud, no queue, no meter.</p>
+        <div class="mono" style="font-size:12.5px;color:#aeb8c2;line-height:2;border-top:1px solid #2a2418;padding-top:12px;">
+          <div>↳ GB10 Grace Blackwell Superchip</div>
+          <div>↳ <strong style="color:#F2B441;">1 PFLOP</strong> (1000 TOPS) FP4 AI</div>
+          <div>↳ 128&nbsp;GB unified &middot; 20-core Arm</div>
+          <div>↳ up to 4&nbsp;TB &middot; runs models to ~200B</div>
+        </div>
       </div>
 
-      <div class="bcard">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
-          <h3 style="font-weight:800;font-size:19px;margin:0;">ZimaBoard 2</h3>
-          <span class="tier" style="background:#FBF0D8;color:#9a6e15;">Always‑on server</span>
+      <!-- ASUS Ascent GX10 -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid #2a2418;border-radius:22px;padding:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <span class="mono" style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(95,156,255,.14);color:#9ec0ff;border:1px solid rgba(95,156,255,.38);border-radius:999px;padding:5px 11px;">Desk-sized</span>
+          <span class="mono" style="font-size:11px;color:#7d8893;">from ~$2,999</span>
         </div>
-        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">A silent, fanless x86 board that quietly runs the LifeBoard and stores your records on your shelf.</p>
-        <div class="spec"><span>From</span><span>~$200</span></div>
-        <div class="spec"><span>Memory</span><span>up to 16 GB</span></div>
-        <div class="spec"><span>CPU</span><span>quad‑core x86</span></div>
-        <div class="spec"><span>Power</span><span>~6–12 W</span></div>
-        <div class="spec"><span>Runs</span><span>LifeBoard + 4B</span></div>
-      </div>
-
-      <div class="bcard">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
-          <h3 style="font-weight:800;font-size:19px;margin:0;">Synology NAS</h3>
-          <span class="tier" style="background:#E8F3EC;color:#2f7d54;">The vault</span>
+        <div style="background:#08070a;border:1px solid #1a2130;border-radius:16px;padding:14px;margin:12px 0 16px;display:flex;justify-content:center;">
+          <svg width="240" height="120" viewBox="0 0 240 120" fill="none" aria-label="ASUS Ascent GX10">
+            <defs>
+              <linearGradient id="silvA" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#C9D0D9"/><stop offset="0.5" stop-color="#9BA4B0"/><stop offset="1" stop-color="#7B8593"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="120" cy="108" rx="70" ry="8" fill="rgba(158,192,255,0.12)"/>
+            <path d="M160 46 L186 32 L186 92 L160 106 Z" fill="#6f7a89" stroke="#566273" stroke-width="1.6"/>
+            <path d="M82 46 L108 32 L186 32 L160 46 Z" fill="#c3ccd8" stroke="#566273" stroke-width="1.6"/>
+            <rect x="82" y="46" width="78" height="60" rx="4" fill="url(#silvA)" stroke="#566273" stroke-width="1.8"/>
+            <ellipse cx="139" cy="39" rx="15" ry="6" fill="#586374"/>
+            <ellipse cx="139" cy="39" rx="9" ry="3.4" fill="#6f7a89"/>
+            <g stroke="#7c8694" stroke-width="2">
+              <line x1="90" y1="56" x2="152" y2="56"/><line x1="90" y1="64" x2="152" y2="64"/><line x1="90" y1="72" x2="152" y2="72"/><line x1="90" y1="80" x2="152" y2="80"/><line x1="90" y1="88" x2="152" y2="88"/>
+            </g>
+            <rect x="136" y="94" width="13" height="9" rx="1.5" fill="#2B2118"/>
+            <rect x="120" y="96" width="10" height="6" rx="3" fill="#2B2118"/>
+            <circle cx="176" cy="58" r="3" fill="#2FB67A"/>
+          </svg>
         </div>
-        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">The data home — records, photos, and documents, backed up and RAID‑protected. Pair it with an edge brain.</p>
-        <div class="spec"><span>From</span><span>~$300+</span></div>
-        <div class="spec"><span>Memory</span><span>4–32 GB</span></div>
-        <div class="spec"><span>Storage</span><span>multi‑bay, RAID</span></div>
-        <div class="spec"><span>Power</span><span>~20–40 W</span></div>
-        <div class="spec"><span>Runs</span><span>Vault (+ 4B on x86)</span></div>
-      </div>
-
-      <div class="bcard">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
-          <h3 style="font-weight:800;font-size:19px;margin:0;">Apple Mac mini (M4)</h3>
-          <span class="tier" style="background:#FBF0D8;color:#9a6e15;">Headroom</span>
-        </div>
-        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">Silent, sips power, and Apple Silicon runs a bigger brain with room to spare. The comfortable all‑in‑one.</p>
-        <div class="spec"><span>From</span><span>~$599</span></div>
-        <div class="spec"><span>Memory</span><span>16 GB unified</span></div>
-        <div class="spec"><span>Chip</span><span>Apple M4</span></div>
-        <div class="spec"><span>Power</span><span>~5–30 W</span></div>
-        <div class="spec"><span>Runs</span><span>DiabeticDaily‑9B (27B quantized)</span></div>
-      </div>
-
-      <div class="bcard" style="grid-column:1 / -1;border-color:#F0DCA8;background:linear-gradient(180deg,#fffdf8,#fff);">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
-          <h3 style="font-weight:800;font-size:19px;margin:0;">ZimaCube 2</h3>
-          <span class="tier" style="background:#2B2118;color:#F2B441;">Vault + biggest brain</span>
-        </div>
-        <p style="font-size:14.5px;color:#6b5e4f;margin:0 0 14px;line-height:1.55;">The full home server: many drive bays for years of records <em>plus</em> room for a GPU — so the same cube holds your vault and runs the largest brain.</p>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 28px;">
-          <div class="spec"><span>From</span><span>~$700+</span></div>
-          <div class="spec"><span>Storage</span><span>multi‑bay, RAID</span></div>
-          <div class="spec"><span>Memory</span><span>up to 64 GB</span></div>
-          <div class="spec"><span>Expansion</span><span>GPU bay</span></div>
-          <div class="spec"><span>Power</span><span>~30–80 W</span></div>
-          <div class="spec"><span>Runs</span><span>DiabeticDaily‑27B + vault</span></div>
+        <h3 style="font-weight:800;font-size:20px;letter-spacing:-0.4px;margin:0 0 3px;">ASUS Ascent GX10</h3>
+        <div style="font-size:14px;color:#9ec0ff;font-weight:600;margin-bottom:12px;">The same Blackwell brain, compact</div>
+        <p style="font-size:14.5px;color:#9aa7b3;line-height:1.55;margin:0 0 14px;">ASUS&rsquo;s take on the GB10 platform &mdash; the same petaflop-class AI in a tidy desk unit with a 1&nbsp;TB drive built in.</p>
+        <div class="mono" style="font-size:12.5px;color:#aeb8c2;line-height:2;border-top:1px solid #2a2418;padding-top:12px;">
+          <div>↳ GB10 Grace Blackwell</div>
+          <div>↳ <strong style="color:#9ec0ff;">1000 TOPS</strong> (1 PFLOP) FP4</div>
+          <div>↳ 128&nbsp;GB unified &middot; 20-core Arm</div>
+          <div>↳ <strong style="color:#9ec0ff;">1&nbsp;TB</strong> NVMe &middot; desk-sized</div>
         </div>
       </div>
-
     </div>
-  </section>
 
-  <!-- ===== BASELINE / BYO ===== -->
-  <section style="background:#0B0F14;color:#E8EEF5;">
-    <div class="sec-pad" style="max-width:900px;margin:0 auto;">
-      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#F2B441;margin-bottom:14px;">Already have a device? Great.</div>
-      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 16px;color:#fff;">Here's the baseline it needs to hit</h2>
-      <p style="font-size:17px;line-height:1.7;color:#9aa7b3;margin:0 0 26px;">You don't have to buy anything new. A spare mini‑PC, Mac mini, or NAS often already clears the bar. If a device you own checks these, it can run the LifeBoard and the on‑box Bee:</p>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
-        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">MEMORY</div><div style="font-weight:700;font-size:17px;">~8 GB RAM</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">enough for the LifeBoard + the 4B brain</div></div>
-        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">STORAGE</div><div style="font-weight:700;font-size:17px;">~20 GB free</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">the brain + your growing vault</div></div>
-        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">COMPUTE</div><div style="font-weight:700;font-size:17px;">NPU / GPU or Apple Silicon</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">a modern x86 CPU runs the 4B too, just slower</div></div>
-        <div style="background:#11161d;border:1px solid #1F2A36;border-radius:14px;padding:18px;"><div class="mono" style="font-size:12px;color:#F2B441;margin-bottom:6px;">HOME</div><div style="font-weight:700;font-size:17px;">Always‑on, low power</div><div style="font-size:13.5px;color:#7d8893;margin-top:4px;">sits on a shelf; sips electricity</div></div>
+    <div class="mono" style="position:relative;font-size:12.5px;color:#7d8893;margin-top:22px;text-align:center;letter-spacing:.04em;">Overkill for the LifeBoard alone &mdash; built for hosting the full Bee, fine-tuning, and the hive&rsquo;s research, at home.</div>
+  </div>
+</section>
+
+<!-- ===== WHAT YOU CARRY (edge devices) ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:40px 24px 24px;">
+  <div style="text-align:center;max-width:680px;margin:0 auto 36px;">
+    <div class="mono" style="font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">What you carry</div>
+    <h2 style="font-weight:800;font-size:clamp(28px,4.2vw,44px);letter-spacing:-1px;line-height:1.1;margin:0 0 14px;">The box stays home. The nudges find <span style="color:#D99A2B;">you</span>.</h2>
+    <p style="font-size:17px;line-height:1.62;color:#6b5e4f;margin:0;">Your phone and watch are the messengers &mdash; a gentle tap when a foot check is due or a dose is coming up. The thinking and the records stay on the box; your wrist just shows you what it already knows.</p>
+  </div>
+
+  <div class="cmp">
+    <!-- iPhone -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:24px;display:flex;gap:22px;align-items:center;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="flex-shrink:0;background:#fff;border:1px solid #efe6d4;border-radius:18px;padding:14px;display:flex;justify-content:center;">
+        <svg width="86" height="150" viewBox="0 0 86 150" fill="none" aria-label="iPhone">
+          <defs><linearGradient id="iporange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E07B38"/><stop offset="1" stop-color="#BD5F26"/></linearGradient></defs>
+          <rect x="6" y="4" width="74" height="142" rx="17" fill="url(#iporange)"/>
+          <rect x="10" y="8" width="66" height="134" rx="13" fill="#0B0F14"/>
+          <rect x="13" y="11" width="60" height="128" rx="10" fill="#FBF7EF"/>
+          <rect x="31" y="15" width="24" height="7" rx="3.5" fill="#0B0F14"/>
+          <rect x="18" y="30" width="50" height="28" rx="7" fill="#FBF0D8" stroke="#F0DCA8" stroke-width="1.4"/>
+          <circle cx="28" cy="41" r="4.6" fill="#F2B441"/>
+          <rect x="37" y="37" width="25" height="4" rx="2" fill="#caa86a"/>
+          <rect x="37" y="45" width="18" height="3.2" rx="1.6" fill="#ddc79a"/>
+          <rect x="18" y="64" width="50" height="20" rx="6" fill="#f1f6f2" stroke="#cfe6d8" stroke-width="1.2"/>
+          <circle cx="28" cy="74" r="4" fill="#2FB67A"/>
+          <rect x="37" y="71" width="24" height="3.4" rx="1.7" fill="#9ec9b1"/>
+          <rect x="37" y="78" width="15" height="3" rx="1.5" fill="#bcdac9"/>
+          <rect x="18" y="90" width="50" height="20" rx="6" fill="#f7f1e6" stroke="#ece0c8" stroke-width="1.2"/>
+          <circle cx="28" cy="100" r="4" fill="#D99A2B"/>
+          <rect x="37" y="97" width="22" height="3.4" rx="1.7" fill="#cdb78e"/>
+          <rect x="37" y="104" width="14" height="3" rx="1.5" fill="#ddcaa0"/>
+        </svg>
       </div>
-      <p style="font-size:15px;line-height:1.65;color:#7d8893;margin:24px 0 0;">Bigger box, bigger brain: more memory and a real GPU step you up to the 9B and 27B brains for deeper answers. Start small — you can always grow.</p>
+      <div>
+        <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 8px;">iPhone</h3>
+        <ul style="list-style:none;margin:0;padding:0;font-size:14.5px;color:#6b5e4f;line-height:1.5;">
+          <li style="display:flex;gap:9px;padding:4px 0;"><span style="color:#D99A2B;font-weight:800;">›</span>Take foot photos &amp; quick-log meds</li>
+          <li style="display:flex;gap:9px;padding:4px 0;"><span style="color:#D99A2B;font-weight:800;">›</span>Ask the Bee on the go</li>
+          <li style="display:flex;gap:9px;padding:4px 0;"><span style="color:#D99A2B;font-weight:800;">›</span>See today&rsquo;s board at a glance</li>
+          <li style="display:flex;gap:9px;padding:4px 0;color:#1f8f5d;"><span style="font-weight:800;">›</span>Photos sync to <strong>your box</strong> &mdash; never a cloud</li>
+        </ul>
+      </div>
     </div>
-  </section>
 
-  <!-- ===== PRIVACY-FIRST VALUE ===== -->
-  <section class="sec-pad" style="max-width:1000px;margin:0 auto;">
-    <div style="text-align:center;max-width:680px;margin:0 auto 36px;">
-      <div class="mono" style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">Why local‑first wins</div>
-      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 14px;">Your data is stored at home. <span style="color:#D99A2B;">Full stop.</span></h2>
-      <p style="font-size:17px;line-height:1.65;color:#6b5e4f;margin:0;">One law runs the whole thing — <strong>your private health data never leaves the box.</strong> Everything below follows from owning the hardware.</p>
+    <!-- Apple Watch -->
+    <div class="box-card" style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:22px;padding:24px;display:flex;gap:22px;align-items:center;box-shadow:0 2px 5px rgba(43,33,24,.04);">
+      <div style="flex-shrink:0;background:#fff;border:1px solid #efe6d4;border-radius:18px;padding:14px;display:flex;justify-content:center;">
+        <svg width="100" height="150" viewBox="0 0 100 150" fill="none" aria-label="Apple Watch">
+          <defs><linearGradient id="rosecase" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAC4B2"/><stop offset="1" stop-color="#D4A48E"/></linearGradient></defs>
+          <path d="M35 8 L65 8 L62 36 L38 36 Z" fill="#EFEAE4" stroke="#d8cfc4" stroke-width="1.2"/>
+          <path d="M38 114 L62 114 L65 142 L35 142 Z" fill="#EFEAE4" stroke="#d8cfc4" stroke-width="1.2"/>
+          <rect x="22" y="30" width="56" height="90" rx="21" fill="url(#rosecase)" stroke="#b98e78" stroke-width="2"/>
+          <rect x="28" y="36" width="44" height="78" rx="16" fill="#0B0F14"/>
+          <rect x="34" y="46" width="32" height="19" rx="6" fill="#16140f"/>
+          <circle cx="43" cy="55.5" r="4.6" fill="#F2B441"/>
+          <rect x="51" y="51" width="12" height="3.4" rx="1.7" fill="#caa86a"/>
+          <rect x="51" y="58" width="9" height="3" rx="1.5" fill="#7a6a48"/>
+          <rect x="34" y="70" width="32" height="30" rx="7" fill="#16140f"/>
+          <circle cx="50" cy="82" r="8.5" fill="none" stroke="#2FB67A" stroke-width="2.3"/>
+          <path d="M46 82 l3 3 l5 -6" fill="none" stroke="#2FB67A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="40" y="93" width="20" height="3.2" rx="1.6" fill="#5b6b78"/>
+          <rect x="78" y="56" width="6" height="14" rx="3" fill="#D4A48E" stroke="#b98e78" stroke-width="1.2"/>
+          <rect x="79" y="74" width="4" height="16" rx="2" fill="#cf9f89"/>
+        </svg>
+      </div>
+      <div>
+        <h3 style="font-weight:800;font-size:19px;letter-spacing:-0.4px;margin:0 0 8px;">Apple Watch</h3>
+        <ul style="list-style:none;margin:0;padding:0;font-size:14.5px;color:#6b5e4f;line-height:1.5;">
+          <li style="display:flex;gap:9px;padding:4px 0;"><span style="color:#D99A2B;font-weight:800;">›</span>&ldquo;Your foot check is due&rdquo; on your wrist</li>
+          <li style="display:flex;gap:9px;padding:4px 0;"><span style="color:#D99A2B;font-weight:800;">›</span>Calm medication reminders</li>
+          <li style="display:flex;gap:9px;padding:4px 0;"><span style="color:#D99A2B;font-weight:800;">›</span>Glucose &amp; movement glances</li>
+          <li style="display:flex;gap:9px;padding:4px 0;color:#1f8f5d;"><span style="font-weight:800;">›</span>A gentle tap &mdash; never panic buzzing</li>
+        </ul>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🔒</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No cloud dependency</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Works in an outage, a storm, off‑grid. The brain and your records are right there in the room.</p></div>
-      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🚫</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No subscription</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Free to you — sovereign‑compute income funds it. Pay once for the box; nothing monthly.</p></div>
-      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🙅</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No harvesting</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">No ads, no data sold, no profile built on your illness. The box works for you, not an advertiser.</p></div>
-      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🛡️</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">No breach surface</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Your records aren't sitting in a company's cloud waiting to be hacked — they're on your shelf.</p></div>
-      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">📴</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">Yours to keep</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">No company can change the terms, raise the price, or shut it off. You own the box, the data, and the brain.</p></div>
-      <div class="bcard"><div style="font-size:22px;margin-bottom:8px;">🐝</div><h3 style="font-weight:800;font-size:16.5px;margin:0 0 6px;">A brain you control</h3><p style="font-size:14px;color:#6b5e4f;margin:0;line-height:1.55;">Bee answers on the box, in plain English — organizing and explaining, never diagnosing or dosing.</p></div>
-    </div>
-  </section>
+  </div>
 
-  <!-- ===== CTA ===== -->
-  <section style="background:#F3ECDD;border-top:1px solid #ece3d2;">
-    <div class="sec-pad" style="max-width:760px;margin:0 auto;text-align:center;">
-      <h2 style="font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.8px;line-height:1.15;margin:0 0 10px;"><span style="color:#2B2118;">Win</span> <span style="color:#D99A2B;">big.</span> on a box you own.</h2>
-      <p style="font-size:17px;line-height:1.6;color:#6b5e4f;margin:0 0 28px;">Every day — not someday. Join the first members and we'll help you get the right little box for your home.</p>
+  <div style="margin-top:18px;background:#fff;border:1px solid #ece3d2;border-radius:18px;padding:20px 24px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center;">
+    <span style="display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:#1f8f5d;"><span style="width:9px;height:9px;border-radius:50%;background:#2FB67A;display:inline-block;"></span>Your devices talk to the box over your own home network</span>
+    <span style="color:#e0d3bd;">&middot;</span>
+    <span style="font-size:14.5px;color:#6b5e4f;">notifications carry no records &mdash; nothing routes through a vendor cloud.</span>
+  </div>
+</section>
+
+<!-- ===== WHAT THE COMPUTE REPRESENTS ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:40px 24px 18px;">
+  <div style="text-align:center;max-width:680px;margin:0 auto 32px;">
+    <div class="mono" style="font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#D99A2B;margin-bottom:14px;">What this compute represents</div>
+    <h2 style="font-weight:800;font-size:clamp(28px,4.2vw,44px);letter-spacing:-1px;line-height:1.1;margin:0 0 14px;">A one-time box, not a forever bill</h2>
+    <p style="font-size:17px;line-height:1.62;color:#6b5e4f;margin:0;">Cloud health apps rent you back your own data, month after month, and quietly learn from it. A box you own flips that &mdash; you pay once, and the value compounds at home.</p>
+  </div>
+
+  <div class="grid-stats" style="margin-bottom:20px;">
+    <div style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:20px;padding:26px;text-align:center;">
+      <div style="font-weight:800;font-size:42px;letter-spacing:-1.5px;color:#D99A2B;line-height:1;margin-bottom:8px;">$0</div>
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;">per month, forever</div>
+      <p style="font-size:13.5px;color:#8a7a66;margin:0;line-height:1.5;">No subscription. No per-question AI meter. The box you bought keeps working.</p>
+    </div>
+    <div style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:20px;padding:26px;text-align:center;">
+      <div style="font-weight:800;font-size:42px;letter-spacing:-1.5px;color:#D99A2B;line-height:1;margin-bottom:8px;">100%</div>
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;">stays in your home</div>
+      <p style="font-size:13.5px;color:#8a7a66;margin:0;line-height:1.5;">Records and Bee questions are processed on the box &mdash; not on a server you can&rsquo;t see.</p>
+    </div>
+    <div style="background:#FBF7EF;border:1px solid #e6dcc8;border-radius:20px;padding:26px;text-align:center;">
+      <div style="font-weight:800;font-size:42px;letter-spacing:-1.5px;color:#D99A2B;line-height:1;margin-bottom:8px;">24/7</div>
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;">awake, even offline</div>
+      <p style="font-size:13.5px;color:#8a7a66;margin:0;line-height:1.5;">Reminders and the board keep running when the internet &mdash; or the company &mdash; doesn&rsquo;t.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOUD VS LOCAL ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:18px 24px 56px;">
+  <div class="cmp">
+    <div style="background:#fff;border:1px solid #ece3d2;border-radius:22px;padding:30px;">
+      <div class="mono" style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9b8d7b;margin-bottom:16px;">A cloud health app</div>
+      <ul style="list-style:none;margin:0;padding:0;font-size:15.5px;color:#6b5e4f;line-height:1.5;">
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #f4ecdd;"><span style="color:#b9897f;font-weight:800;flex-shrink:0;">✕</span><span>Your records sit on their servers</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #f4ecdd;"><span style="color:#b9897f;font-weight:800;flex-shrink:0;">✕</span><span>A monthly fee &mdash; raised whenever they like</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #f4ecdd;"><span style="color:#b9897f;font-weight:800;flex-shrink:0;">✕</span><span>Your data trains models you&rsquo;ll never see</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #f4ecdd;"><span style="color:#b9897f;font-weight:800;flex-shrink:0;">✕</span><span>Goes dark if the company folds or the Wi-Fi drops</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;"><span style="color:#b9897f;font-weight:800;flex-shrink:0;">✕</span><span>You can&rsquo;t see what leaves</span></li>
+      </ul>
+    </div>
+    <div style="background:#0B0F14;border:1px solid #1F2A36;border-radius:22px;padding:30px;color:#E8EEF5;">
+      <div class="mono" style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#F2B441;margin-bottom:16px;">Your little box</div>
+      <ul style="list-style:none;margin:0;padding:0;font-size:15.5px;color:#cdd6df;line-height:1.5;">
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #1F2A36;"><span style="color:#2FB67A;font-weight:800;flex-shrink:0;">✓</span><span>Records live on a drive in your home</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #1F2A36;"><span style="color:#2FB67A;font-weight:800;flex-shrink:0;">✓</span><span>Pay once for the box &mdash; then nothing</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #1F2A36;"><span style="color:#2FB67A;font-weight:800;flex-shrink:0;">✓</span><span>Your data trains nobody &mdash; it&rsquo;s yours</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #1F2A36;"><span style="color:#2FB67A;font-weight:800;flex-shrink:0;">✓</span><span>Keeps working offline, on your power</span></li>
+        <li style="display:flex;gap:12px;padding:11px 0;"><span style="color:#2FB67A;font-weight:800;flex-shrink:0;">✓</span><span>Nothing leaves unless you send it</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HONESTY NOTE ===== -->
+<section class="sec-pad" style="max-width:900px;margin:0 auto;padding:0 24px 64px;">
+  <div style="background:#FBF0D8;border:1px solid #F0DCA8;border-radius:18px;padding:24px 26px;display:flex;gap:16px;align-items:flex-start;">
+    <span style="font-size:22px;line-height:1.3;flex-shrink:0;">🐝</span>
+    <p style="font-size:14.5px;color:#6b5e4f;margin:0;line-height:1.62;"><strong style="color:#2B2118;font-weight:700;">Straight talk.</strong> The LifeBoard, your records, and reminders run on any baseline box today. Running the <em>full</em> diabetic Bee model on-box wants an AI-class machine &mdash; a Jetson, a Mac mini, or a ZimaCube with a GPU; lighter boxes pair a smaller on-box helper with the full Bee when you choose to reach for it. We&rsquo;ll always tell you what runs where. LocalDiabetic organizes, reminds, and explains &mdash; it isn&rsquo;t medical advice and doesn&rsquo;t replace your care team.</p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="sec-pad" style="max-width:1180px;margin:0 auto;padding:0 24px 80px;">
+  <div style="background:linear-gradient(150deg,#F2B441,#D99A2B);border-radius:26px;padding:54px 40px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(255,255,255,.3) 0%,transparent 50%);pointer-events:none;"></div>
+    <div style="position:relative;">
+      <div style="display:flex;justify-content:center;margin-bottom:18px;animation:ld-float 6s ease-in-out infinite;"><svg width="50" height="55" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee-dark"></use></svg></div>
+      <h2 style="font-weight:800;font-size:clamp(28px,4.4vw,44px);letter-spacing:-1.2px;line-height:1.08;margin:0 0 14px;color:#1a1205;">Your whole diabetic life, on a box you own.</h2>
+      <p style="font-size:18px;color:#5a3f12;max-width:52ch;margin:0 auto 28px;line-height:1.55;">Bring your own box or let us help you choose one. Either way, it stays home with you.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="/join" style="text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;font-size:17px;padding:16px 30px;border-radius:13px;box-shadow:0 8px 20px -8px rgba(217,154,43,.8);">Join the first members</a>
-        <a href="/try" style="text-decoration:none;background:#fff;color:#2B2118;font-weight:700;font-size:17px;padding:15px 28px;border-radius:13px;border:1.5px solid #F2B441;">Try the Bee</a>
+        <a href="/join" style="text-decoration:none;background:#1a1205;color:#FBF7EF;font-weight:800;font-size:17px;padding:16px 32px;border-radius:13px;box-shadow:0 10px 26px -12px rgba(26,18,5,.7);">Join the first members</a>
+        <a href="/try" style="text-decoration:none;background:rgba(255,255,255,.85);color:#2B2118;font-weight:700;font-size:17px;padding:15px 30px;border-radius:13px;">Try the Bee first</a>
       </div>
+      <div class="mono" style="font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5a3f12;margin-top:24px;">Win big &middot; every day &middot; not someday</div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
 <!-- ===== FOOTER ===== -->
 <footer style="background:#0B0F14;color:#9aa7b3;">
   <div style="max-width:1140px;margin:0 auto;padding:68px 24px 40px;">
     <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;"><svg width="28" height="31" style="display:block;overflow:visible" aria-hidden="true"><use href="#bee-dark"></use></svg><span style="font-size:19px;letter-spacing:-0.3px;"><span style="font-weight:600;color:#E8EEF5;">Local</span><span style="font-weight:800;color:#F2B441;">Diabetic</span></span></div>
     <p style="font-size:15px;color:#7d8893;max-width:60ch;margin:0 0 26px;line-height:1.6;">LocalDiabetic is the home &middot; DailyLifeOS is the system &middot; OpenDiabetic is the hive &middot; DiabeticLedger is the proof.</p>
-    <div class="mono" style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px;margin-bottom:28px;">
-      <a href="https://opendiabetic.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">OpenDiabetic</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://dailylifeos.org/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DailyLifeOS</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://diabeticdocs.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticDocs</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://diabeticnode.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticNode</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://diabeticdatasets.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticDatasets</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://diabeticmodels.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticModels</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://diabeticledger.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticLedger</a><span style="color:#3a4654;">&middot;</span>
-      <a href="https://diabeticdonation.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">DiabeticDonation</a>
+    <div class="mono" style="display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;margin-bottom:28px;">
+      <a href="https://opendiabetic.com/" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">opendiabetic.com</a><span style="color:#3a4654;">&middot;</span>
+      <a href="/shop" class="flink" style="color:#9aa7b3;text-decoration:none;">Shop</a><span style="color:#3a4654;">&middot;</span>
+      <a href="/about" class="flink" style="color:#9aa7b3;text-decoration:none;">About</a><span style="color:#3a4654;">&middot;</span>
+      <a href="/give" class="flink" style="color:#9aa7b3;text-decoration:none;">Give</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://huggingface.co/SwarmandBee" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">Hugging Face</a><span style="color:#3a4654;">&middot;</span>
+      <a href="https://www.youtube.com/@LocalDiabeticwin" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">YouTube</a>
     </div>
     <div style="border-top:1px solid #1F2A36;padding-top:24px;font-size:13px;color:#5d6b78;line-height:1.7;">
-      <a href="mailto:build@localdiabetic.com" class="flink" style="color:#9aa7b3;text-decoration:none;">build@localdiabetic.com</a> &middot; HQ &middot; Jupiter, Florida &middot; 561.532.7120 &middot; <a href="https://x.com/localdiabetics" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">@localdiabetics</a> &middot; <a href="https://huggingface.co/SwarmandBee" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">Hugging Face</a> &middot; <a href="https://www.youtube.com/@LocalDiabeticwin" target="_blank" rel="noopener" class="flink" style="color:#9aa7b3;text-decoration:none;">YouTube</a><br>
-      Owned &amp; operated by Swarm and Bee LLC &middot; DBA Swarm &amp; Bee AI &middot; Florida &middot; D-U-N-S 138652395 &middot; &copy; 2026 &middot; &ldquo;Give people what they need, not what you have.&rdquo;
+      <a href="mailto:build@localdiabetic.com" class="flink" style="color:#9aa7b3;text-decoration:none;">build@localdiabetic.com</a> &middot; Jupiter, Florida<br>
+      Owned &amp; operated by Swarm and Bee LLC &middot; &copy; 2026 &middot; &ldquo;Win big &mdash; every day, not someday.&rdquo;
     </div>
   </div>
 </footer>
+
+<!-- ===== MOBILE STICKY CTA ===== -->
+<div class="ld-mobile-cta" style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(251,247,239,.94);backdrop-filter:blur(10px);border-top:1px solid #ece3d2;padding:12px 16px;">
+  <a href="/join" class="btn-primary" style="display:block;text-align:center;text-decoration:none;background:#F2B441;color:#1a1205;font-weight:800;font-size:16px;padding:14px;border-radius:12px;box-shadow:0 8px 20px -10px rgba(217,154,43,.8);">Join the first members</a>
+</div>
 
 </body>
 </html>
